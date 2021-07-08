@@ -91,3 +91,22 @@ alias 별명='명령': 명령을 별명으로 설정. ex) alias rm='rm -i'
 PS1=~~ 이렇게 설정하면 지역적 설정  
 .bashrc | .bash_profile에 설정하면 전역적 설정
 
+<br/>
+
+## 환경 설정 파일
+### 환경 설정 파일
+사용자가 로그인할 때마다 자동으로 실행되는 명령을 저장한 파일
+
+### 시스템 환경 설정 파일
+시스템을 사용하는 전체 사용자의 공통 환경을 설정하는 파일
+
+/etc/profile: 시스템 공통으로 적용되는 환경 변수 설정. PATH, HOSTNAME, ...  
+/etc/bashrc: 시스템 공통으로 적용되는 function과 alias 설정
+
+### 사용자 환경 설정 파일
+각 사용자의 홈 디렉터리에 숨김 파일로 생성  
+.bash관련 파일들은 유저별 환경 변수를 설정  
+.bash_history, .bash_profile, .bashrc, .bash_logout
+
+### 환경 설정 파일 적용하기
+. 파일 또는 source 파일
