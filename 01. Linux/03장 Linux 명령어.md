@@ -83,8 +83,8 @@ ex) cd /usr/css/bin/ar
 ### 파일 뒷부분 출력
 - tail: 파일 뒷부분 10행 출력  
 - tail -숫자: 파일 뒷부분 숫자행 출력  
-- tail -f: 파일 출력을 종료하지 않고 주기적으로 출력  
-　　　ex) tail -f /var/log/secure: 로그인 실패 내역 실시간 출력
+- tail -f: 파일 출력을 종료하지 않고 주기적으로 출력
+  - ex) tail -f /var/log/secure: 로그인 실패 내역 실시간 출력
 
 ### 파일 복사
 - cp -r: 디렉터리 복사
