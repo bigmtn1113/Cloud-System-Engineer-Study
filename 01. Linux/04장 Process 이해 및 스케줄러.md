@@ -48,7 +48,7 @@ crontab 파일 형식(분(0 ~ 59) 시(0 ~ 23) 일(1 ~ 31) 월(1 ~ 12) 요일(0 ~
 crontab 편집기는 vi 또는 EDITOR 환경 변수에 지정된 편집기를 사용한다.
 
 ### crontab 명령어
-- crontab -e: crontab -e으로 편집한 파일 저장 시, /var/spool/cron 디렉터리에 사용자 이름으로 생성(이미 사용자가 만든 파일이 있으면 덮어쓰기)
+- crontab -e: crontab 파일 생성 및 편집. crontab -e으로 편집한 파일 저장 시, /var/spool/cron 디렉터리에 사용자 이름으로 생성(이미 사용자가 만든 파일이 있으면 덮어쓰기)
 - crontab -l: crontab 파일 내용 확인
 
 ### crontab 명령 사용 제한
