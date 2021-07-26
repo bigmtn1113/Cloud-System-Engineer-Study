@@ -163,3 +163,32 @@ ping과 동일하게 ICMP 프로토콜을 이용해 경로 확인
 - nmtui: text user interface. 네트워크 관리를 시각적으로 할 수 있는 도구. network-scripts 파일을 수정하여, 네트워크를 설정. GUI 환경을 이용할 수 없을 때 사용. nmcli는 옵션이 많으므로 어려우니 nmtui를 보통 사용.
 
 - 수동 설정: vi /etc/sysconfig/network-scripts/ifcfg-xxx
+
+<br/>
+
+## Data Link
+- 두 개의 개방 시스템들 간의 효율적이고 신뢰성 있는 정보 전송을 할 수 있도록 하며 오류 검출과 회복을 위한 오류 제어 기능 수행
+
+- 송신측과 수신측의 속도 차이를 해결하기 위해 흐름 제어 가능
+
+- 프레임의 시작과 끝을 구분하기 위한 프레임의 동기화 기능 수행
+
+- 전송단위: Frame
+
+- 프로토콜: MAC, PPP, ARP, ...
+
+- 장비: Bridge, Switch
+
+### 2계층 기준 Packet 구조
+3계층까지의 패킷 정보 | 출발지 MAC | 목적지 MAC
+
+<br/>
+
+## Physical
+- 물리적, 전기적, 기계적 매체를 통해 데이터 bit를 전송하기 위해 요구되는 기능들을 정의
+
+- 전송단위: Bit
+
+- 프로토콜: Ethernet, RS-232C, ...
+
+- 장비: Hub, Repeater
