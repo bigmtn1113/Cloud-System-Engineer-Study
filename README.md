@@ -12,3 +12,4 @@
   - [08. 파일 시스템 관리](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/01.%20Linux/08%EC%9E%A5%20%ED%8C%8C%EC%9D%BC%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EA%B4%80%EB%A6%AC.md)
 - [02. Network](https://github.com/kva231/Cloud-System-Engineer-Study/tree/master/02.%20Network)
   - [01. Network](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/02.%20Network/01%EC%9E%A5%20Network.md)
+  - [02. OSI 7 Layer](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/02.%20Network/02%EC%9E%A5%20OSI%207%20Layer.md)
