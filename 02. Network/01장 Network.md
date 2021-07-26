@@ -53,10 +53,10 @@ TCP/IP 4 Layer
 ### DHCP 서비스
 Dynamic Host Configuration Protocol. 동적 IP 제공 서비스  
 DHCP는 **UDP** 전송 프로토콜이다.  
-DHCP 서버는 IP를 자동으로 부여하는 서버로써 MS의 서비스뿐만 아니라 대부분의 IP 자동 부여를 목적으로 한다.
+DHCP 서버는 **IP를 자동으로 부여하는 서버**로써 MS의 서비스뿐만 아니라 대부분의 IP 자동 부여를 목적으로 한다.
 
 ### DHCP 원리
-DHCP 서버는 client에게 IP 주소를 할당할 때 영구적으로 할당하는 것이 아니라 임대기간을 명시하여 그 기간 동안만 client가 IP 주소를 사용하도록 한다.  
+DHCP 서버는 client에게 IP 주소를 할당할 때 영구적으로 할당하는 것이 아니라 임대기간을 명시하여 그 기간 동안만 client가 IP 주소를 사용하도록 한다. 
 client는 임대기간을 연장하고 싶으면 DHCP 서버에 요청하면 되고, 더 이상 필요없으면 IP 주소를 반납하면 된다.
 
 1. **DHCP Discover**  
