@@ -15,3 +15,9 @@ HW | Intel® Core™ i5-8265U CPU @ 1.60Hz 1.80 GHz, 16GB RAM
 ## CentOS 7 설치하기
 https://github.com/kva231/Cloud-System-Engineer-Study/tree/master/images/CentOS%207%20Installation  
 이미지 순서대로 설치 진행
+
+<br/>
+
+## Ubuntu 20.04.2.0 설치하기
+https://github.com/kva231/Cloud-System-Engineer-Study/tree/master/images/Ubuntu%2020.04.2.0%20Installation  
+이미지 순서대로 설치 진행
