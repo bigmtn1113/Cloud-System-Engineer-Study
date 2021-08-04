@@ -74,29 +74,80 @@ Docker는 하나의 Linux 커널을 여러 개의 컨테이너에서 공유한�
 
 ### Docker 컴포넌트
 - **Docker Engine**  
-	**핵심 기능**
+  **핵심 기능**
 	
-	Docker 이미지를 생성하고 컨테이너를 기동시키기 위한 기능  
-	Docker 명령의 실행이나 Dockerfile에 의한 이미지도 생성
+  Docker 이미지를 생성하고 컨테이너를 기동시키기 위한 기능  
+  Docker 명령의 실행이나 Dockerfile에 의한 이미지도 생성
 
 - **Docker Registry**  
-	**이미지 공개 및 공유**
+  **이미지 공개 및 공유**
 
-	컨테이너의 바탕이 되는 Docker 이미지를 공개 및 공유하기 위한 레지스트리 기능  
-	Docker Hub도 이 Docker Registry를 사용
+  컨테이너의 바탕이 되는 Docker 이미지를 공개 및 공유하기 위한 레지스트리 기능  
+  Docker Hub도 이 Docker Registry를 사용
 
 - **Docker Compose**  
-	**컨테이너 일원 관리**
+  **컨테이너 일원 관리**
 
-	여러 개의 컨테이너 구성 정보를 코드로 정의하고, 명령을 실행함으로써 앱 실행 환경을 구성하는 컨테이너들을 일원 관리하기 위한 툴
+  여러 개의 컨테이너 구성 정보를 코드로 정의하고, 명령을 실행함으로써 앱 실행 환경을 구성하는 컨테이너들을 일원 관리하기 위한 툴
 
 - **Docker Machine**  
-	**Docker 실행 환경 구축**
+  **Docker 실행 환경 구축**
 
-	클라우드 환경에 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴
+  클라우드 환경에 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴
 
 - **Docker Swarm**  
-	**클러스터 관리**
+  **클러스터 관리**
 
-	여러 Docker 호스트를 클러스터화하기 위한 툴  
-	클러스터를 관리하거나 API 제공하는 역할은 Manager가, Docker 컨테이너를 실행하는 역할은 Node가 담당한다. 또한, Kubernetes를 이용할 수 있다.
+  여러 Docker 호스트를 클러스터화하기 위한 툴  
+  클러스터를 관리하거나 API 제공하는 역할은 Manager가, Docker 컨테이너를 실행하는 역할은 Node가 담당한다.  
+  또한, Kubernetes를 이용할 수 있다.
+
+<br/>
+
+## Docker 작동 구조
+### namespace
+**컨테이너를 구획화하는 장치**
+
+Linux 커널의 namespace 기능을 사용  
+PID, Network, UID, MOUNT, UTS, IPC의 독립된 환경 구축
+
+### cgroups
+**릴리스 관리 장치**
+
+Docker는 물리 머신 상의 자원을 여러 컨테이너가 공유하여 작동한다.  
+이때 Linux 커널의 기능인 cgroups(control groups) 기능을 사용하여 자원의 할당 등을 관리한다.
+
+cgroups는 프로세스와 스레드를 그룹화하여, 그 그룹 안에 존재하는 프로세스와 스레드에 대한 관리를 수행하는 기능이다.  
+예를 들어 Host OS의 CPU나 메모리와 같은 자원에 대해 그룹별로 제한을 둘 수 있다.
+
+cgroups는 계층 구조를 사용하여 프로세스를 그룹화하여 관리할 수 있다.  
+cgroups의 부모자식 관계에서는 자식이 부모의 제한을 물려받는다.  
+만약 자식이 부모의 제한을 초과하는 설정을 하더라도 부모 cgroups의 제한에 걸린다.
+
+### 네트워크 구성
+Linux는 Docker를 설치하면 서버의 물리 NIC가 docker0라는 가상 브리지 네트워크로 연결된다.  
+이 docker0은 Docker를 실행시킨 후에 default로 만들어진다.
+
+Docker 컨테이너가 실행되면 컨테이너에 172.17.0.0/16이라는 서브넷 마스크를 가진 프라이빗 IP 주소가 eth0으로 자동 할당된다.  
+이때 IP를 할당받은 컨테이너의 eth0과 통신을 할 수 있도록 해주는 가상 NIC(veth)가 있다.  
+이 가상 NIC는 가상 네트워크 인터페이스로, 페어(컨테이너의 eth0)인 NIC와 터널링 통신(IP 없음)을 한다.  
+veth는 docker0과도 연결이 이루어져 네트워크를 구성하게 된다.
+
+etho(물리 NIC) - docker0(가상 브리지) - vethxxxx(가상 NIC) - 컨테이너A의 eth0  
+　　　　　　　　　　　　　　　　 　- vethxxxx(가상 NIC) - 컨테이너B의 eth0
+
+Docker 컨테이너와 외부 네트워크가 통신할 땐 docker0와 Host OS의 물리 NIC에서 패킷을 전송하는 장치가 필요하다.  
+Docker에서는 NAPT 기능을 사용하여 연결한다.
+
+#### ※ NAT와 NAPT(IP 마스커레이드)
+- **NAT(Network Address Translation)**  
+  프라이빗 IP 주소가 할당된 클라이언트가 인터넷 상에 있는 서버에 액세스할 때, NAT 라우터는 클라이언트의 프라이빗 IP 주소를 NAT가 갖고 있는 글로벌 IP 주소로 변환하여 요청을 송신한다. 응답은 NAT 라우터가 송신처를 클라이언트의 IP 주소로 변환하여 송신한다.
+
+  글로벌 IP 주소와 프라이빗 IP 주소를 1:1로 변환하므로 동시에 여러 클라이언트가 액세스할 수 없다는 특징이 있다.
+
+- **NAPT(Network Address Port Translation)**  
+  프라이빗 IP 주소와 함께 포트 번호도 같이 변환하는 기술이다.  
+  프라이빗 IP 주소를 글로벌 IP 주소로 변환할 때 프라이빗 IP 주소별로 서로 다른 포트 번호로 변환한다.
+
+  하나의 글로벌 IP 주소와 여러 개의 프라이빗 IP 주소를 변환할 수 있다는 특징이 있다.  
+  IP mascarade(가면무도회). 많은 가면을 쓴 IP 패킷이 포트 번호의 가면을 붙여 변환되는 모습을 나타낸 것이다.
