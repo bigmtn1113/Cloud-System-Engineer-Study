@@ -142,6 +142,14 @@ d(detached 모드)옵션을 사용하면 실행 결과로 ID만 출력한다.
 #### 3) web server 접속
 브라우저에서 http://localhost:80 접속
 
+#### ※ web server index.html 교체
+```
+vi index.html
+docker cp index.html webserver:/usr/share/nginx/html/
+```
+
+브라우저에서 http://localhost:80 재접속
+
 <br/>
 
 ### Nginx 정지 및 기동
