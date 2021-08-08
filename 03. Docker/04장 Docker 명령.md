@@ -134,34 +134,34 @@ ex) `docker logout`
 
 ## Docker 컨테이너 생성/ 시작/ 정지
 ### Docker 컨테이너 Life Cycle
-1) 컨테이너 생성
-2) 컨테이너 시작
-3) 컨테이너 정지
-4) 컨테이너 삭제
+1\) 컨테이너 생성  
+2\) 컨테이너 시작  
+3\) 컨테이너 정지  
+4\) 컨테이너 삭제
 
-- docker container create
+- docker container create  
 	**컨테이너 생성**
 	
 	이미지(Linux의 작동에 필요한 /etc나 /bin 등과 같은 디렉터리 및 파일들)로부터 컨테이너를 생성한다.  
 	또한, 이미지의 스냅샷(스토리지 안에 존재하는 파일과 디렉터리를 특정 타이밍에서 추출한 것)을 취한다.
 
-- docker container start
+- docker container start  
 	**컨테이너 시작**
 	
 	정지 중인 컨테이너를 시작할 때 사용한다.  
 	컨테이너 상에서 임의의 프로세스를 시작한다.
 
-- docker container run
+- docker container run  
 	**컨테이너 생성 및 시작**
 	
 	이미지로부터 컨테이너를 생성하고 이미지 스냅샷을 취하며, 컨테이너 상에서 임의의 프로세스를 시작한다.
 
-- docker container stop
+- docker container stop  
 	**컨테이너 정지**
 	
 	실행 중인 컨테이너를 정지시킬 때 사용한다.  
 
-- docker container rm
+- docker container rm  
 	**컨테이너 삭제**
 	
 	정지 중인 컨테이너를 삭제할 때 사용한다.
