@@ -131,3 +131,140 @@ ex) `docker logout`
 `export DOCKER_CONTENT_TRUST=0`
 
 ---
+
+## Docker 컨테이너 생성/ 시작/ 정지
+### Docker 컨테이너 Life Cycle
+1) 컨테이너 생성
+2) 컨테이너 시작
+3) 컨테이너 정지
+4) 컨테이너 삭제
+
+- docker container create
+	**컨테이너 생성**
+	
+	이미지(Linux의 작동에 필요한 /etc나 /bin 등과 같은 디렉터리 및 파일들)로부터 컨테이너를 생성한다.  
+	또한, 이미지의 스냅샷(스토리지 안에 존재하는 파일과 디렉터리를 특정 타이밍에서 추출한 것)을 취한다.
+
+- docker container start
+	**컨테이너 시작**
+	
+	정지 중인 컨테이너를 시작할 때 사용한다.  
+	컨테이너 상에서 임의의 프로세스를 시작한다.
+
+- docker container run
+	**컨테이너 생성 및 시작**
+	
+	이미지로부터 컨테이너를 생성하고 이미지 스냅샷을 취하며, 컨테이너 상에서 임의의 프로세스를 시작한다.
+
+- docker container stop
+	**컨테이너 정지**
+	
+	실행 중인 컨테이너를 정지시킬 때 사용한다.  
+
+- docker container rm
+	**컨테이너 삭제**
+	
+	정지 중인 컨테이너를 삭제할 때 사용한다.
+
+<br/>
+
+### docker container run
+**컨테이너 생성 및 시작**  
+
+`docker container run [옵션] 이미지명[:태그명] [인수]`
+
+ex) `docker container run -it --name "test1" centos /bin/cal`  
+centos 이미지로 test1이라는 이름의 컨테이너를 실행시키고, 컨테이너 안에서 /bin/cal 명령을 실행한다.  
+--interactive, -i 옵션은 컨테이너의 표준 출력을 연다는 뜻이고  
+--tty, -t 옵션은 tty(단말 디바이스)를 확보한다는 뜻이다.
+
+ex) `docker container run -d centos /bin/ping localhost`  
+centos 이미지로 컨테이너를 생성하고, localhost에 /bin/ping 명령을 실행한다.  
+--detach, -d 옵션은 컨테이너를 백그라운드에서 실행한다는 뜻이다.  
+`docker container logs [옵션] <컨테이너 식별자>`를 통해 백그라운드에서 실행중인지 확인할 수 있다.
+
+ex) `docker container run -d -p 8080:80 nginx`  
+nginx 이미지로 컨테이너를 생성하고, 백그라운드에서 실행한다.  
+--publish, -p 옵션은 호스트와 컨테이너의 포트를 매핑한다는 뜻이다.  
+이때, 호스트의 포트 번호 8080과 컨테이너의 포트 번호 80을 매핑시킨다.  
+
+<br/>
+
+### docker container ls
+**가동 컨테이너 목록 표시**
+
+`docker container ls [옵션]`  
+
+ex) `docker container ls -a -f exited=0`  
+종료 코드가 0인 모든 컨테이너 목록을 표시한다.  
+--all, -a 옵션은 모든 컨테이너를 표시한다는 뜻이고  
+--filter, -f 옵션은 컨테이너를 필터링한다는 뜻이다.
+
+<br/>
+
+### docker container stats
+**컨테이너 가동 확인**
+
+`docker container stats [컨테이너 식별자]`
+
+ex) `docker container stats webserver`  
+CPU, 메모리 사용률, 네트워크 I/O 등 정보를 출력한다.  
+`docker container top <컨테이너 식별자> [ps 옵션]`를 통해 컨테이너에서 실행중인 프로세스를 확인할 수도 있다.
+
+<br/>
+
+### docker container start
+**컨테이너 시작**
+
+`docker container start [옵션] <컨테이너 식별자> [컨테이너 식별자]`
+
+ex) `docker container start 5370f74ed4cf`
+
+<br/>
+
+### docker container stop
+**컨테이너 정지**
+
+`docker container stop [옵션] <컨테이너 식별자> [컨테이너 식별자]`  
+
+ex) `docker container stop -t 2 5370f74ed4cf`  
+컨테이너를 2초 후에 정지시킨다.  
+--time, -t 옵션은 컨테이너의 정지 시간을 지정(default는 10초)한다는 뜻이다.  
+`docker container kill [옵션] <컨테이너 식별자> [컨테이너 식별자]`를 통해 강제적으로 정지시킬 수 있다.
+
+<br/>
+
+### docker container restart
+**컨테이너 재시작**
+
+`docker container restart [옵션] <컨테이너 식별자> [컨테이너 식별자]`
+
+ex) `docker container restart -t 2 webserver`  
+컨테이너를 2초 후에 재시작한다.  
+--time, -t 옵션은 컨테이너의 재시작 시간을 지정(default는 10초)한다는 뜻이다.
+
+<br/>
+
+### docker container rm
+**컨테이너 삭제**
+
+`docker container rm [옵션] <컨테이너 식별자> [컨테이너 식별자]`
+
+ex) `docker container rm 5370f74ed4cf`
+
+#### ※ docker container prune
+정지 중인 모든 컨테이너를 삭제할 수 있다.
+
+<br/>
+
+### docker container pause/ unpause
+**컨테이너 중단/재개**
+
+`docker container pause <컨테이너 식별자>`
+
+ex)   
+```
+docker container pause webserver
+ls
+docker container unpause webserver
+```
