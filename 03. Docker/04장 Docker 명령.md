@@ -80,6 +80,7 @@ ex) `docker search --filter=stars=1000 nginx`
 
 ex) `docker image rm nginx`
 
+#### ※ docker image prune
 `docker image prune -a`을 사용하면 사용하지 않은 이미지를 모두 삭제할 수 있다.
 
 <br/>
