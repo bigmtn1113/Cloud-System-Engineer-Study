@@ -40,7 +40,7 @@ tag로 작성된 image들은 DIGEST에 <none>으로 표시된다.
 ### docker image inspect
 **이미지 상세 정보 확인**
 
-`docker image inspect [옵션] 이미지명 [이미지명]`  
+`docker image inspect [옵션] 이미지명 [이미지명]`
 결과는 JSON 형식으로 표시된다.
 
 ex) `docker image inspect --format="{{.Os}}" centos:7 ubuntu:18.04`  
@@ -117,10 +117,10 @@ ex) `docker logout`
 
 ### ※ Docker Content Trust(DCT)
 - 서명  
-	이미지 작성자가 Docker registry에 이미지를 업로드하기 전에 로컬 환경에서 이미지 작성자의 Offline Key(비밀키)를 사용하여 이미지에 서명한다.
+  이미지 작성자가 Docker registry에 이미지를 업로드하기 전에 로컬 환경에서 이미지 작성자의 Offline Key(비밀키)를 사용하여 이미지에 서명한다.
 
 - 검증  
-	서명된 이미지를 다운로드할 때 이미지 작성자의 Tagging Key(공개키)를 사용하여 이미지 진위 여부를 파악한다.  
+  서명된 이미지를 다운로드할 때 이미지 작성자의 Tagging Key(공개키)를 사용하여 이미지 진위 여부를 파악한다.  
   만일 변조된 경우는 그 이미지를 무효로 만든다.
 
 #### ※ DCT 기능 유효화
@@ -129,3 +129,5 @@ ex) `docker logout`
 
 #### ※ DCT 기능 무효화
 `export DOCKER_CONTENT_TRUST=0`
+
+---
