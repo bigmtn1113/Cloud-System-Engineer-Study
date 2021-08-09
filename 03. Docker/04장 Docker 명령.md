@@ -195,6 +195,18 @@ ex) `docker container run -it -h www.test.com --add-host www.test2.com:192.168.1
 --add-host 옵션으로 컨테이너 안의 /etc/hosts에 호스트명과 IP 주소를 정의할 수 있다.  
 `cat /etc/hosts`하면 정의된 내용을 확인할 수 있다.
 
+#### ※ --net 옵션
+설정값 | 설명
+--- | ---
+bridge | 브리지 연결을 사용
+none | 네트워크에 연결하지 않음
+container:[name \| id] | 다른 컨테이너의 네트워크를 사용
+host | 컨테이너가 호스트 OS의 네트워크를 사용
+NETWORK | 사용자 정의 네트워크를 사용
+
+ex) `docker container run -it --net=webapp-net centos`  
+사용자 정의 네트워크를 작성 및 사용하고 컨테이너를 생성 및 실행한다.
+
 <br/>
 
 ### docker container ls
