@@ -204,8 +204,25 @@ container:[name \| id] | 다른 컨테이너의 네트워크를 사용
 host | 컨테이너가 호스트 OS의 네트워크를 사용
 NETWORK | 사용자 정의 네트워크를 사용
 
-ex) `docker container run -it --net=webapp-net centos`  
-사용자 정의 네트워크를 작성 및 사용하고 컨테이너를 생성 및 실행한다.
+- 다른 container 사용  
+  ex) `docker container run -itd --name=container_link2 --net=container:container_link1 centos`
+  
+  `docker container inspect container_link2 | grep IPA`를 통해 IP가 없는 것을 볼 수 있고  
+  `docker container exec container_link2 ifconfig`를 통해 IP가 container_link1과 똑같은 것을 볼 수 있다.  
+  container_link2는 외부적으론 자체적으로 IP를 가지지 않고 내부적으론 container_link1과 똑같은 IP를 갖는다.
+
+- 호스트 OS 네트워크 사용  
+  **컨테이너가 호스트 IP와 Port를 사용**
+  
+  호스트 네트워크를 이용하므로 vethxxxxx도 생성되지 않는다.  
+  낮은 지연시작을 갖을 수 있으나, 호스트 부담이 증가하므로 추천하지 않는 방식이다.
+
+  ex) `docker container run --name=nginx_host --net=host nginx:1.19`
+
+- 사용자 정의 네트워크 사용  
+  ex) `docker container run -it --net=webapp-net centos`
+  
+  사용자 정의 네트워크를 작성 및 사용하고 컨테이너를 생성 및 실행한다.
 
 <br/>
 
