@@ -184,9 +184,16 @@ centos 이미지로 컨테이너를 생성하고, localhost에 /bin/ping 명령�
 `docker container logs [옵션] <컨테이너 식별자>`를 통해 백그라운드에서 실행중인지 확인할 수 있다.
 
 ex) `docker container run -d -p 8080:80 nginx`  
-nginx 이미지로 컨테이너를 생성하고, 백그라운드에서 실행한다.  
---publish, -p 옵션은 호스트와 컨테이너의 포트를 매핑한다는 뜻이다.  
-이때, 호스트의 포트 번호 8080과 컨테이너의 포트 번호 80을 매핑시킨다.  
+--publish, -p 옵션으로 호스트와 컨테이너의 포트를 매핑할 수 있다.  
+이때, docker-proxy가 생기고 호스트의 포트 번호 8080과 컨테이너의 포트 번호 80을 매핑시킨다.
+
+ex) `docker container run -d --dns 192.168.1.1 nginx`  
+--dns 옵션으로 컨테이너용 DNS 서버의 IP 주소를 지정할 수 있다.
+
+ex) `docker container run -it -h www.test.com --add-host www.test2.com:192.168.1.1 centos`  
+--hostname, -h 옵션으로 컨테이너 자신의 호스트명을 지정할 수 있고  
+--add-host 옵션으로 컨테이너 안의 /etc/hosts에 호스트명과 IP 주소를 정의할 수 있다.  
+`cat /etc/hosts`하면 정의된 내용을 확인할 수 있다.
 
 <br/>
 
