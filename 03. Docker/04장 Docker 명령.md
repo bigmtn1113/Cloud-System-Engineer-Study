@@ -304,3 +304,44 @@ docker container pause webserver
 ls
 docker container unpause webserver
 ```
+
+---
+
+## Docker 컨테이너 네트워크
+### docker network ls
+**네트워크 목록 표시**
+
+`docker network ls [옵션]`
+
+네트워크 구성 정보 목록을 확인할 수 있다.  
+기본값으로 bridge, host, none 이 세개의 네트워크를 만든다.  
+네트워크를 지정하지 않고 컨테이너를 시작하면 bridge 네트워크로 컨테이너가 시작된다.  
+`docker container inspect test | grep NetworkID` 하면 test 컨테이너가 소속된 네트워크를 알 수 있다.
+
+ex) `docker network ls`
+
+<br/>
+
+### docker network create
+**네트워크 작성**
+
+`docker network create [옵션] 네트워크`
+
+--driver, -d 옵션을 주면 네트워크 브리지(기본값) 또는 오버레이를 지정할 수 있고  
+--ip-range 옵션을 주면 컨테이너에 할당하는 IP 주소의 범위를 지정할 수 있다.  
+이 외에도 --subnet 옵션으로 서브넷을 CIDR 형식으로 지정할 수 있다.
+
+ex) `docker network create -d bridge --subnet=172.100.1.0/24 --ip-range=172.100.1.0/24 web-network`  
+사용자 정의 네트워크 web-network를 생성한다.  
+`docker container run --net=web-network ~~`하면 web-network 대역대로 컨테이너에 IP가 할당된다.
+
+<br/>
+
+### docker network inspect
+**네트워크 상세 정보 확인**
+
+`docker network inspect [옵션] 네트워크`
+
+네트워크 이름, id, 서브넷, 게이트 웨이 등뿐만 아니라 네트워크 안에 가동 중인 컨테이너 정보도 확인할 수 있다.
+
+ex) `docker network inspect web-network`
