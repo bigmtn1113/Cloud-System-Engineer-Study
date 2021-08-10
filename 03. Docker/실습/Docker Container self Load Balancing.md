@@ -3,7 +3,7 @@
 ### 사전 준비 작업
 - 2개의 터미널 창(t1, t2) 준비
 
-```
+```shell
 docker network create -d bridge --subnet 172.200.1.0/24 netlb              # 사용자 정의 브리지 네트워크 생성
 docker network ls
 
