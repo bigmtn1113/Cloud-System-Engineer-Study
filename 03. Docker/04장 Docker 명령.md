@@ -209,7 +209,7 @@ NETWORK | 사용자 정의 네트워크를 사용
   
   `docker container inspect container_link2 | grep IPA`를 통해 IP가 없는 것을 볼 수 있고  
   `docker container exec container_link2 ifconfig`를 통해 IP가 container_link1과 똑같은 것을 볼 수 있다.  
-  container_link2는 외부적으론 자체적으로 IP를 가지지 않고 내부적으론 container_link1과 똑같은 IP를 갖는다.
+  container_link2는 자체적으로 IP를 가지지 않고 container_link1의 IP를 공유한다.
 
 - 호스트 OS 네트워크 사용  
   **컨테이너가 호스트 IP와 Port를 사용**
