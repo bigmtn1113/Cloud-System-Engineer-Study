@@ -205,6 +205,9 @@ host | 컨테이너가 호스트 OS의 네트워크를 사용
 NETWORK | 사용자 정의 네트워크를 사용
 
 - 다른 container 사용  
+  **컨테이너의 IP, Mac, veth 등을 공유**
+
+
   ex) `docker container run -itd --name=container_link2 --net=container:container_link1 centos`
   
   `docker container inspect container_link2 | grep IPA`를 통해 IP가 없는 것을 볼 수 있고  
