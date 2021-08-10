@@ -3,7 +3,7 @@
 ### 사전 준비 작업
 - 3개의 터미널 창(t1, t2, t3) 준비
 
-```
+```shell
 t1) docker network ls
 t1) docker network create mynet
 t1) docker network ls
