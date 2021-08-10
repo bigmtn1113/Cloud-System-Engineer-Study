@@ -340,6 +340,23 @@ ex) `docker network create -d bridge --subnet=172.100.1.0/24 --ip-range=172.100.
 
 <br/>
 
+### docker network connect/ disconnect
+**네트워크 연결**
+
+`docker network connet [옵션] 네트워크 컨테이너`
+
+Docker 컨테이너를 Docker 네트워크에 연결할 때 사용한다.  
+docker container run 할 때 '--net=컨테이너' 옵션을 사용해 네트워크를 연결할 수도 있다.
+
+ex) `docker network connect web-network webfront`  
+`docker container inspect webfront`를 통해 컨테이너에 속한 네트워크를 확인할 수 있다.  
+컨테이너 bash로 들어가 ipconfig 혹은 route 명령을 실행하는 것도 하나의 확인 방법이다.
+
+ex) `docker network disconnect web-network webfront`  
+Docker 컨테이너를 Docker 네트워크에서 연결 해제할 수 있다.
+
+<br/>
+
 ### docker network inspect
 **네트워크 상세 정보 확인**
 
