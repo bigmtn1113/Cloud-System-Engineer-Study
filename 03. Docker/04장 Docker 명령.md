@@ -365,3 +365,68 @@ Docker 컨테이너를 Docker 네트워크에서 연결 해제할 수 있다.
 네트워크 이름, id, 서브넷, 게이트 웨이 등뿐만 아니라 네트워크 안에 가동 중인 컨테이너 정보도 확인할 수 있다.
 
 ex) `docker network inspect web-network`
+
+---
+
+## 가동 중인 Docker 컨테이너 조작
+### docker container attach
+**가동 컨테이너 연결**
+
+`docker container attach [옵션] 컨테이너`
+
+가동 중인 컨테이너에 연결하면 모든 동작을 똑같이 수행하게 된다.  
+예를 들어, A컨테이너에서 enter를 치면 연결한 B컨테이너에서도 enter가 쳐진다.  
+ctrl + p + q를 입력하면 연결이 해제된다.
+
+ex) `docker container attach test`
+
+<br/>
+
+### docker container exec
+**가동 컨테이너에서 프로세스 실행**
+
+`docker container exec [옵션] 컨테이너 명령 [인수]`
+
+가동 컨테이너에 액세스하고자 할 때 사용한다.
+
+ex) `docker container exec -it webserver /bin/bash`
+
+<br/>
+
+### docker container top
+**가동 컨테이너의 프로세스 확인**
+
+`docker container top 컨테이너 [ps 옵션]`
+
+PID와 USER, 실행 중인 명령 등이 표시된다.
+
+ex) `docker container top webserver`
+
+<br/>
+
+### docker container rename
+**컨테이너의 이름 변경**
+
+`docker container rename 컨테이너 이름`
+
+ex) `docker container rename test test2`
+
+<br/>
+
+### docker container cp
+**컨테이너 안의 파일 복사**
+
+`docker container cp 컨테이너:<컨테이너의 파일 경로> <호스트의 파일 경로>`  
+`docker container cp <호스트의 파일 경로> 컨테이너:<컨테이너의 파일 경로>`
+
+ex) `docker container cp webserver:/etc/nginx/nginx.conf /tmp/nginx.conf`  
+`docker container cp text.txt webserver:/tmp/text.txt`
+
+<br/>
+
+### docker container diff
+**컨테이너 조작으로 인해 컨테이너가 생성되었을 때와 달라진 점 확인**
+
+`docker container diff 컨테이너`
+
+ex) `docker container diff test`
