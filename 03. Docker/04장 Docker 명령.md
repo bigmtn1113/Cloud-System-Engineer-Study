@@ -430,3 +430,88 @@ ex) `docker container cp webserver:/etc/nginx/nginx.conf /tmp/nginx.conf`
 `docker container diff 컨테이너`
 
 ex) `docker container diff test`
+
+---
+
+## Docker 이미지 생성
+### docker container commit
+**컨테이너로부터 이미지 작성**
+
+`docker container commit [옵션] 컨테이너 [이미지명[:태그명]]`
+
+--author, -a 옵션으로 작성자를 지정할 수 있고  
+--pause, -p 옵션을 사용해 컨테이너를 일시 정지하고 commit할 수 있다.
+
+ex) `docker container commit -a "taesan" webserver kva231/webfront:1.0`  
+`docker image ls`를 입력하면 생성된 이미지를 확인할 수 있고  
+`docker image inspect kva231/webfront:1.0`를 입력하면 Author가 taesan인 것을 확인할 수 있다.
+
+<br/>
+
+### docker container export
+**컨테이너를 tar 파일로 출력**
+
+`docker container export [옵션] 컨테이너`
+
+가동 중인 컨테이너의 디렉터리/파일들을 모아서 tar 파일을 만든다.  
+--output, -o 옵션으로 tar 파일 이름을 지정하거나  
+redirection(>)을 사용해 tar 파일 이름을 지정할 수 있다.
+
+ex) `docker container export -o test.tar webserver`  
+`docker container export webserver > test.tar`으로도 가능하다.  
+결과물은 `tar tvf test.tar`으로 확인할 수 있다.
+
+<br/>
+
+### docker image import
+**tar 파일로부터 이미지 작성**
+
+`docker image import <파일 | URL> | - [이미지명[:태그명]]`
+
+tar 파일뿐만 아니라 압축된 디렉터리나 파일(tar.gz, bzip 등)도 적용할 수 있다.  
+단, root 권한으로 실행하지 않으면 액세스 권한이 없는 파일이 포함되지 않으니 주의해야 한다.
+
+ex) `cat test.tar | docker image import - kva231/webfront:1.1`  
+pip와 STDIN을 통해 image를 import할 수도 있다.
+
+<br/>
+
+### docker image save
+**이미지 저장**
+
+`docker image save [옵션] 이미지 [이미지...]`
+
+Docker 이미지를 tar 파일로 저장할 수 있다.  
+--output, -o 옵션으로 tar 파일 이름을 지정하거나  
+redirection(>)을 사용해 tar 파일 이름을 지정할 수 있다.
+
+ex) `docker image save -o export.tar tensorflow`  
+`docker image save tensorflow > export.tar`으로도 가능하다.  
+`docker image save tensorflow | gzip > export.tar.gz`처럼 이미지를 tar.gz 파일로 압축할 수도 있다.
+
+<br/>
+
+### docker image load
+**이미지 읽어 들이기**
+
+`docker image load [옵션]`
+
+tar 이미지로부터 이미지를 읽어 들일 수 있다.  
+--input, -i 옵션으로 읽어 들일 tar 파일 이름을 지정하거나  
+redirection(<)을 사용해 읽어 들일 tar 파일 이름을 지정할 수 있다.
+
+ex) `docker image load -i export.tar`  
+`docker image load < export.tar`으로도 가능하다.
+
+<br/>
+
+### docker system prune
+**사용중이지 않은 데이터 일괄 삭제**
+
+`docker system prune [옵션]`
+
+사용하지 않는 (dangling)이미지, 컨테이너, 네트워크 등을 일괄적으로 삭제할 수 있다.  
+--volumes 옵션을 사용하면 볼륨도 prune할 수 있다.  
+--all, -a 옵션을 사용하면 dangling뿐만 아니라 사용하지 않는 리소스를 모두 삭제하기 때문에 삭제 범위가 더 넓어진다.
+
+ex) `docker system prune -a`
