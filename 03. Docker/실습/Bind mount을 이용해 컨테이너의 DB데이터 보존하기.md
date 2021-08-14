@@ -10,7 +10,7 @@ docker container run -itd --rm --name=vtest-mysql \
 > -e MYSQL_ROOT_PASSWORD=pass123 \
 > -v /home/kebin/mysql-volume:/var/lib/mysql mysql:5.7
 
-docker exec -it vtest-mysql bash
+docker container exec -it vtest-mysql bash
 컨테이너 bash# service mysql status
 컨테이너 bash# mysql -uroot -p
 
@@ -38,7 +38,7 @@ docker container run -itd --rm --name=vtest-mysql \
 > -e MYSQL_DATABASE=dockerdb \
 > -v /home/kebin/mysql-volume:/var/lib/mysql mysql:5.7
 
-docker exec -it vtest-mysql bash
+docker container exec -it vtest-mysql bash
 컨테이너 bash# ls -l /var/lib/mysql/dockerdb
 컨테이너 bash# exit
 
