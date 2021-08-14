@@ -14,7 +14,8 @@ GitHub와 같은 소스코드 관리 툴과 연계하여 코드를 빌드하는 
 ### docker image pull
 **이미지 다운로드**
 
-`docker image pull [옵션] 이미지명[:태그명]`  
+`docker image pull [옵션] 이미지명[:태그명]`
+
 태그명을 생략하면 latest 버전을 다운로드
 
 ex) `docker image pull centos:7`
@@ -41,6 +42,7 @@ tag로 작성된 image들은 DIGEST에 <none>으로 표시된다.
 **이미지 상세 정보 확인**
 
 `docker image inspect [옵션] 이미지명 [이미지명]`
+
 결과는 JSON 형식으로 표시된다.
 
 ex) `docker image inspect --format="{{.Os}}" centos:7 ubuntu:18.04`  
@@ -52,7 +54,8 @@ ex) `docker image inspect --format="{{.Os}}" centos:7 ubuntu:18.04`
 ### docker image tag
 **이미지 태그 설정**
 
-`docker image tag 소스 이미지명[:태그명] 타겟 이미지명[:태그명]`  
+`docker image tag 소스 이미지명[:태그명] 타겟 이미지명[:태그명]`
+
 식별하기 쉬운 버전명을 붙이는 것이 일반적이다.  
 Docker Hub에 작성한 이미지를 등록하려면 **<Docker Hub 사용자명>/이미지명:[태그명]** 식으로 작성한다.  
 태그는 이미지에 별명을 붙일 뿐 이미지를 복사하거나 이름을 바꾼 것이 아니므로 이미지 ID가 똑같다.
@@ -64,7 +67,8 @@ ex) `docker image tag nginx kva231/webserver:1.0`
 ### docker search
 **이미지 검색**
 
-`docker search [옵션] <검색 키워드>`  
+`docker search [옵션] <검색 키워드>`
+
 결과로 표시되는 항목 중 OFFICIAL은 공식 이미지인지 아닌지를 판단하고, AUTOMATED는 Dockerfile을 바탕으로 자동 생성된 이미지인지 아닌지를 판단한다.
 
 ex) `docker search --filter=stars=1000 nginx`  
@@ -75,7 +79,8 @@ ex) `docker search --filter=stars=1000 nginx`
 ### docker image rm
 **이미지 삭제**
 
-`docker image rm [옵션] 이미지명 [이미지명]`  
+`docker image rm [옵션] 이미지명 [이미지명]`
+
 이미지명은 [REPOSITORY] 또는 [IMAGE ID]을 지정한다.
 
 ex) `docker image rm nginx`
@@ -88,7 +93,8 @@ ex) `docker image rm nginx`
 ### docker login
 **Docker 로그인**
 
-`docker login [옵션] [서버]`  
+`docker login [옵션] [서버]`
+
 --username, -u와 --password, -p 옵션을 통해 로그인할 수 있으며 서버명을 지정하지 않았을 때는 Docker Hub에 액세스된다.
 
 ex) `docker login`
@@ -98,7 +104,8 @@ ex) `docker login`
 ### docker image push
 **이미지 업로드**
 
-`docker image push 이미지명[:태그명]`  
+`docker image push 이미지명[:태그명]`
+
 **<Docker Hub 사용자명>/이미지명:[태그명]** 같은 형식을 지정하고 이미지를 업로드한다.  
 
 ex) `docker image push kva231/webserver:1.0`
@@ -108,7 +115,8 @@ ex) `docker image push kva231/webserver:1.0`
 ### docker logout
 **Docker 로그아웃**
 
-`docker logout [서버명]`  
+`docker logout [서버명]`
+
 서버명을 지정하지 않았을 땐 Docker Hub에 액세스한다.
 
 ex) `docker logout`
@@ -124,7 +132,8 @@ ex) `docker logout`
   만일 변조된 경우는 그 이미지를 무효로 만든다.
 
 #### ※ DCT 기능 유효화
-`export DOCKER_CONTENT_TRUST=1`  
+`export DOCKER_CONTENT_TRUST=1`
+
 이 기능을 유효화해 놓으면 이미지 다운로드 시, 이미지 검증이 일어나고 Tagging 메시지가 출력된다.
 
 #### ※ DCT 기능 무효화
