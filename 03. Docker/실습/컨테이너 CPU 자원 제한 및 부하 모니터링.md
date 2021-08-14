@@ -2,16 +2,70 @@
 
 ### 사전 준비 작업
 - 웹에서 cAdvisor 접속
-- 터미널 2개(t1, t2) 준비
-- t1에서 htop 가동
+
+<br/>
+
+### CPU 개수 지정(stress --cpu 개수)
+컨테이너가 몇 개의 CPU를 사용하도록 할건지 지정한다.
 
 ```shell
-t2) docker run -d --rm --name=cpu_1024 --cpu-shares=1024 leecloudo/stress:1.0 stress --cpu 4
-t1) htop 확인
+docker container run -d --rm --name=cpu_count leecloudo/stress:1.0 stress --cpu 3
+htop
 
-t2) docker run -d --rm --name=cpu_512 --cpu-shares=512 leecloudo/stress:1.0 stress --cpu 4
-t2) ps -auxf | grep stress
+# cadvisor에서 컨테이너 CPU 정보 및 Usage per Core 확인
+# 확인 후, 빠르게 docker stop으로 컨테이너 종료
+```
 
-# cadvisor에서 두 개의 컨테이너 CPU 정보 및 Usage per Core 확인
-# 확인 후, 빠르게 docker stop으로 컨테이너 두개 종료
+<br/>
+
+### CPU 번호 지정(--cpuset-cpus=core번호)
+컨테이너가 어떤 CPU를 사용하도록 할건지 지정한다.  
+core 번호는 0부터 시작한다.
+
+```shell
+docker container run -d --rm --name=cpu_1 --cpuset-cpus=2 leecloudo/stress:1.0 stress --cpu 1
+htop
+
+docker container run -d --rm --name=cpu_2 --cpuset-cpus=0,3 leecloudo/stress:1.0 stress --cpu 2
+htop
+
+# cadvisor에서 컨테이너 CPU 정보 및 Usage per Core 확인
+# 확인 후, 빠르게 docker stop으로 컨테이너 종료
+```
+
+<br/>
+
+### CPU 시간 점유율 지정(--cpu-shares=가중치)
+컨테이너가 코어의 CPU 시간을 얼마나 사용하도록 할건지 지정할 수 있다.  
+상대적인 값이며 기본값은 1024이다.  
+1024를 비율로 따지면 1이고 100% 활용한다는 뜻이다.
+
+
+```shell
+docker container run -d --rm --name=cpu_1024 --cpu-shares=1024 leecloudo/stress:1.0 stress --cpu 4
+htop
+
+docker container run -d --rm --name=cpu_512 --cpu-shares=512 leecloudo/stress:1.0 stress --cpu 4
+ps -auxf | grep stress
+
+# 컨테이너가 각각 약 67%, 약33% CPU 자원을 할당해서 사용
+# cadvisor에서 컨테이너 CPU 정보 및 Usage per Core 확인
+# 확인 후, 빠르게 docker stop으로 컨테이너 종료
+```
+
+<br/>
+
+### CPU 사용비율 지정(--cpus=비율)
+컨테이너가 CPU를 최대 몇 % 사용할 수 있게 할건지 지정할 수 있다.  
+CPU 1개 기준으로 0 ~ 1의 값을 지정하는데, 1은 100%를 뜻한다.  
+
+```shell
+docker container run -d --rm --name=cpu_1 --cpus=1 leecloudo/stress:1.0 stress --cpu 4    # CPU가 4개인데 값이 1이니 각각 약 25%씩 사용하게 된다.
+htop
+
+docker container update --cpus=4 cpu_1      # CPU 모두 100% 사용
+htop
+
+# cadvisor에서 컨테이너 CPU 정보 및 Usage per Core 확인
+# 확인 후, 빠르게 docker stop으로 컨테이너 종료
 ```
