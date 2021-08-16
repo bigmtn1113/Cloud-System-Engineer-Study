@@ -5,6 +5,7 @@
 
 ### 사전 준비 작업
 - 테스트를 위해 서버 2대 준비
+- 1번 서버엔 test:1.0 이미지를, 2번 서버엔 test:2.0 이미지를 준비
 
 ```shell
 # 1번 서버
@@ -54,6 +55,7 @@ docker info               # Insecure Registries: 192.168.56.201:5000 추가 확�
 docker pull 192.168.56.201:5000/test:1.0
 
 docker image tag test:2.0 192.168.56.201:5000/test:2.0
+docker image ls | grep test
 docker push 192.168.56.201:5000/test:2.0
 
 curl -X GET http://192.168.56.201:5000/v2/_catalog
