@@ -55,4 +55,7 @@ docker pull 192.168.56.201:5000/test:1.0
 
 docker image tag test:2.0 192.168.56.201:5000/test:2.0
 docker push 192.168.56.201:5000/test:2.0
+
+curl -X GET http://192.168.56.201:5000/v2/_catalog
+curl -X GET http://192.168.56.201:5000/v2/test/tags/list
 ```
