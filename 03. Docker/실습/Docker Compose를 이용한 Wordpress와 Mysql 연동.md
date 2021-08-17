@@ -1,4 +1,4 @@
-## Docker Compose를 이용한 wordpress와 mysql 연동
+## Docker Compose를 이용한 Wordpress와 Mysql 연동
 
 ### Docker Compose
 - 멀티 컨테이너 서비스
