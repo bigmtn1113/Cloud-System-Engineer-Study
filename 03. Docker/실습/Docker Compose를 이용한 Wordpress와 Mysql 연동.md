@@ -37,7 +37,7 @@ services:
       - mydb_data:/var/lib/mysql
     restart: always
     ports:
-      - '3306:3306'
+      - "3306:3306"
     networks:
       - backend-net
     environment:
@@ -56,7 +56,7 @@ services:
       - ${PWD}/myweb-log:/var/log
     restart: always
     ports:
-      - '8888:80'
+      - "8888:80"
     networks:
       - frontend-net
       - backend-net
