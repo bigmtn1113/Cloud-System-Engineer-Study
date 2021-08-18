@@ -23,13 +23,12 @@ docker-compose version
 
 #### wordpress와 mysql 연동
 ```shell
-cd LABs/
-mkdir myweb && cd $_
+mkdir -p LABs/my_wp && cd $_
 vi docker-compose.yaml
 ```
 ```yaml
 # ----------------------docker-compose.yaml 내용----------------------
-version: '3.8'
+version: '3.9'
 services:
   mydb:
     image: mysql:8.0
@@ -39,29 +38,37 @@ services:
     restart: always
     ports:
       - '3306:3306'
+    networks:
+      - backend-net
     environment:
-      - MYSQL_ROOT_PASSWORD=password#
-      - MYSQL_DATABASE=wpdb
-      - MYSQL_USER=wpuser
-      - MYSQL_PASSWORD=wppassword
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
 
   myweb:
+    depends_on:
+      - mydb
     image: wordpress:latest
     container_name: wordpress_app
     volumes:
       - myweb_data:/var/www/html
-      - /home/kebin/myweb-log:/var/log
+      - ${PWD}/myweb-log:/var/log
+    restart: always
     ports:
       - '8888:80'
-    restart: always
+    networks:
+      - frontend-net
+      - backend-net
     environment:
-      - WORDPRESS_DB_HOST=mysql_app:3306
-      - WORDPRESS_DB_NAME=wpdb
-      - WORDPRESS_DB_USER=wpuser
-      - WORDPRESS_DB_PASSWORD=wppassword
-    depends_on:
-      - mydb
+      - WORDPRESS_DB_HOST=mydb:3306
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
 
+networks:
+  frontend-net: {}
+  backend-net: {}
 volumes:
   mydb_data: {}
   myweb_data: {}
@@ -71,7 +78,7 @@ volumes:
 docker-compose up             # foreground 형태로 실행되므로 이 터미널은 해당 컨테이너의 로그창이 됨
 
 # 새 터미널
-cd LABs/myweb/
+cd LABs/my_wp/
 
 docker-compose ps            # 컨테이너 2개 UP 확인
 docker volume ls             # 생성된 volume들 확인
@@ -80,9 +87,9 @@ docker network ls            # 생성된 network 확인
 http://192.168.56.201:8888 접속             # 서버 환경에 따라 안 들어가질 수 있다.
 
 docker container exec -it mysql_app bash
-컨테이너 bash# mysql -uroot -q              # 비밀번호: password#
+컨테이너 bash# mysql -uroot -q              # 비밀번호: wordpress
 
 mysql> show databases;
-mysql> use wpdb;
+mysql> use wordpress;
 mysql> show tables;             # 12개 테이블이 자동 생성 되고 게시판에 사용했던 정보가 테이블 데이터로 저장됨
 ```
