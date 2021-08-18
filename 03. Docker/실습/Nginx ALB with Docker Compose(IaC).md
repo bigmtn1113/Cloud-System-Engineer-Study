@@ -5,11 +5,6 @@
 
 <br/>
 
-### 참고 사항
-- [Docker Container Application Load Balancer](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EC%8B%A4%EC%8A%B5/Docker%20Container%20Application%20Load%20Balancer.md)
-
-<br/>
-
 ### 내용
 - Docker Compose를 이용해 Nginx ALB 구현
 
@@ -210,3 +205,8 @@ docker-compose ps             # 컨테이너 4개 UP 확인
 curl localhost:8080                        # 입력할 때마다 출력문이 바뀌는 거 확인
 http://192.168.56.201:8080 접속            # 새로고침할 때마다 글자가 바뀌는 거 확인
 ```
+
+<br/>
+
+### 참고 사항
+- [Docker Container Application Load Balancer](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EC%8B%A4%EC%8A%B5/Docker%20Container%20Application%20Load%20Balancer.md)
