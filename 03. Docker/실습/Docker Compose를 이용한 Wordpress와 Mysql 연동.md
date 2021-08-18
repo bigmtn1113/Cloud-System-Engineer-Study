@@ -84,7 +84,7 @@ docker-compose ps            # 컨테이너 2개 UP 확인
 docker volume ls             # 생성된 volume들 확인
 docker network ls            # 생성된 network 확인
 
-http://192.168.56.201:8888 접속             # 서버 환경에 따라 안 들어가질 수 있다.
+http://192.168.56.201:8888 접속 후, 로그인            # 서버 환경에 따라 안 들어가질 수 있다.
 
 docker container exec -it mysql_app bash
 컨테이너 bash# mysql -uroot -q              # 비밀번호: wordpress
