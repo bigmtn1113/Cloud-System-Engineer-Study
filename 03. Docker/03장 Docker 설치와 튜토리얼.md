@@ -49,7 +49,7 @@ Linux에 Docker를 설치하는 방법은 배포판이나 버전에 따라 절�
   ```
   sudo usermod -aG docker 유저 이름
   sudo systemctl enable docker
-  sydo systemctl restart docker
+  sudo systemctl restart docker
   sudo reboot
   ```
 
