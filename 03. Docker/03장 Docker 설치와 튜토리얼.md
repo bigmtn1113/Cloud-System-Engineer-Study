@@ -13,10 +13,10 @@ Linux에 Docker를 설치하는 방법은 배포판이나 버전에 따라 절�
   #### 2) https를 경유하여 repository를 사용할 수 있도록 패키지 설치  
   ```
   sudo apt -y install \
-  > apt-transport-https \
-  > ca-certificates \
-  > curl \
-  > software-properties-common
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  software-properties-common
   ```
   
   #### 3) Docker의 공식 GPG(GNU Privacy Guard) 키 추가
