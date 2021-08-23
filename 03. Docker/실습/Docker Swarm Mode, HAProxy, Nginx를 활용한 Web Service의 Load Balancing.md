@@ -9,6 +9,21 @@
 - swarm manager에 HAProxy 구성
 - 웹(nginx) 접속 수행 -> overlay network 내에 있는 nginx container로 트래픽 분산(LB)
 
+#### ※ Overlay Network
+Docker Daemon Host간의 분산 네트워크 생성  
+서로 다른 Docker Host에서 실행되는 컨테이너 간 통신을 위한 논리적인 네트워크 그룹
+
+#### ※ docker_gwbridge
+Overlay Network를 개별 Docker Daemon의 물리적 Network에 연결하는 Bridge Network
+
+#### ※ ingress
+Service의 Node들간에 Load Balancing을 하는 Overlay Network  
+Docker Swarm의 모든 Node가 노출된 Port로 요청을 받게되면 해당 요청을 IPVS라는 모듈로 전달하고,  
+IPVS는 해당 Service에 참여하는 모든 IP 주소를 추적하고 그 중 하나를 선택한 뒤, 요청을 해당 경로로 Routing
+
+<br/>
+
+
 #### Manager Node와 Worker Node 지정
 ```bash
 docker info | grep Swarm              # active 상태 확인
