@@ -111,9 +111,9 @@ networks:
 docker stack deploy --compose-file=haproxy-web.yaml haproxy-web               # 80번 포트 사용 중이면 다른 포트 사용할 것
                                                                               # --compose-file, -c
 
-# nginx 및 proxy 확인
-docker stack services haproxy-web                                             # haproxy-web service 확인 
-docker stack ps haproxy-web                                                   # 실행중인 컨테이너들도 확인
+docker stack ls | grep haproxy-web                                            # haproxy-web 확인
+docker stack services haproxy-web                                             # haproxy-web의 service들 확인 
+docker stack ps haproxy-web                                                   # haproxy-web의 task들 확인
 
 docker service logs -f haproxy-web_nginx
 http://192.168.56.201접속 후, 새로고침 반복	              # [node.role != manager] 설정으로 worker1, 2 node에만 적용
