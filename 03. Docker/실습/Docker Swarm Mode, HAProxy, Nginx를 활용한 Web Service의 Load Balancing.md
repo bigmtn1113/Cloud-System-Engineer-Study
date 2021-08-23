@@ -61,7 +61,7 @@ docker service ls                     # viz_swarm 서비스 실행 확인
 http://192.168.56.201:7070 접속
 ```
 
-#### Test
+#### Compose 파일과 Stack
 ```bash
 docker network create --driver=overlay --attachable haproxy-web
 docker network ls | grep haproxy-web
