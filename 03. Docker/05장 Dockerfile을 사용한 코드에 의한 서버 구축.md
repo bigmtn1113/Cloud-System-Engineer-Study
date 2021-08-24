@@ -120,3 +120,48 @@ docker build -t greet .
 그 다음 제품 환경용 이미지에 실행 가능 바이너리 파일이 복사된다.
 
 `docker image ls`를 해서 생성된 이미지들 크기를 확인해보면 제품 환경용 이미지인 greet은 개발 환경용 이미지인 golang보다 훨씬 작다는 것을 알 수 있다
+
+---
+
+## 명령 및 데몬 실행
+### RUN(명령 실행)
+
+#### Shell 형식
+`RUN <명령>`
+
+명령의 지정을 쉘에서 실행하는 형식으로 기술하는 방법  
+/bin/sh -c를 사용하여 명령을 실행한 것과 동일
+
+ex) `RUN apt-get -y install nginx`
+
+#### Exec 형식
+`RUN ["실행 가능한 명령", "매개변수", "매개변수", ...]`
+
+쉘을 경우하지 않고 직접 실행하는 형식으로 기술하는 방법  
+명령 인수에 환경변수를 지정 불가  
+실행하고 싶은 명령을 JSON 배열로 지정
+
+ex)
+```dockerfile
+FROM ubuntu:latest
+
+RUN echo shell 형식
+RUN ["echo", "Exec 형식"]
+RUN ["/bin/bash", "-c", "echo 'Exec 형식에서 bash 사용'"]
+```
+build 후, `docker history 이미지명`을 통해 확인해보면  
+1번째 RUN은 /bin/sh으로 실행,  
+2번째 RUN은 쉘을 거치지 않고 실행,  
+3번째 RUN은 /bin/bash으로 실행됨을 알 수 있다.
+
+#### ※ RUN 시, 이미지의 레이어
+Dockerfile을 빌드하면 명령마다 내부 이미지가 하나씩 작성되므로
+```dockerfile
+RUN yum -y install httpd
+RUN yum -y install php
+```
+보다
+```dockerfile
+RUN yum -y install httpd php
+```
+이렇게 작성하는 것이 더 좋다.
