@@ -127,15 +127,22 @@ docker build -t greet .
 ### RUN(명령 실행)
 
 #### Shell 형식
-`RUN <명령>`
+```dockerfile
+RUN 명령
+```
 
 명령의 지정을 쉘에서 실행하는 형식으로 기술하는 방법  
 /bin/sh -c를 사용하여 명령을 실행한 것과 동일
 
-ex) `RUN apt-get -y install nginx`
+ex)
+```dockerfile
+RUN apt-get -y install nginx
+```
 
 #### Exec 형식
-`RUN ["실행 가능한 명령", "매개변수", "매개변수", ...]`
+```dockerfile
+RUN ["실행 가능한 명령", "매개변수1", "매개변수2", ...]
+```
 
 쉘을 경우하지 않고 직접 실행하는 형식으로 기술하는 방법  
 명령 인수에 환경변수를 지정 불가  
@@ -165,3 +172,36 @@ RUN yum -y install php
 RUN yum -y install httpd php
 ```
 이렇게 작성하는 것이 더 좋다.
+
+<br/>
+
+### CMD(데몬 실행)
+#### Shell 형식
+```dockerfile
+CMD 명령
+```
+
+RUN 명령 구문과 동일
+
+ex)
+```dockerfile
+CMD nginx -g 'daemon off;'
+```
+
+#### Exec 형식
+```dockerfile
+CMD ["실행 가능한 명령", "매개변수1", "매개변수2", ...]
+```
+
+RUN 명령 구문과 동일
+
+ex)
+```dockerfile
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+#### 컨테이너 실행
+ex) `docker container run -d -p 80:80 cmd-sample`  
+위의 CMD 예제를 포함한 Dockerfile을 build해서 만든 이미지가 cmd-sample이고,  
+이 이미지로 컨테이너를 background로 실행시킨 것이다.  
+컨테이너가 실행될 때 자동으로 CMD 명령이 실행되면서 nginx가 foreground로 실행된다.
