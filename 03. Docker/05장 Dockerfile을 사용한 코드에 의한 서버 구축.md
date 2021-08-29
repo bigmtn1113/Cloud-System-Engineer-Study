@@ -210,18 +210,28 @@ ex) `docker container run -d -p 80:80 cmd-sample`
 
 ### ENTRYPOINT(데몬 실행)
 #### Shell 형식
-`ENTRYPOINT 명령`
+```dockerfile
+ENTRYPOINT 명령
+```
 
 RUN 명령 구문과 동일
 
-ex) `ENTRYPOINT nginx -g 'daemon off;'`
+ex)
+```dockerfile
+ENTRYPOINT nginx -g 'daemon off;'
+```
 
 #### Exec 형식
-`ENTRYPOINT ["실행 가능한 명령", "매개변수1", "매개변수2", ...]`
+```dockerfile
+ENTRYPOINT ["실행 가능한 명령", "매개변수1", "매개변수2", ...]
+```
 
 RUN 명령 구문과 동일
 
-ex) `ENTRYPOINT ["nginx", "-g", "daemon off;"]`
+ex)
+```dockerfile
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+```
 
 #### CMD 명령과의 차이
 - CMD - docker container run 명령 실행 시에 인수로 새로운 명령을 지정하면 이것을 우선 실행
@@ -242,7 +252,9 @@ docker container run -it sample -d 2		# top -d 2 실행. CMD 명령 덮어쓰기
 <br/>
 
 ### ONBUILD(빌드 완료 후에 실행)
-`ONBUILD 명령`
+```dockerfile
+ONBUILD 명령
+```
 
 Dockerfile로부터 생성한 이미지를 베이스 이미지로 한 다른 Dockerfile을 빌드할 때, 실행하고 싶은 명령을 기술
 
@@ -280,24 +292,36 @@ ONBUILD 명령으로 인해 Dockerfile을 빌드할 때 ADD 명령이 수행되�
 <br/>
 
 ### STOPSIGNAL(시스템 콜 시그널의 설정)
-`STOPSIGNAL 시그널`
+```dockerfile
+STOPSIGNAL 시그널
+```
 
 시그널 번호(9 등) 또는 시그널명(SIGKILL 등)을 지정 가능
 
-ex) `STOPSIGNAL SIGKILL`
+ex)
+```dockerfile
+STOPSIGNAL SIGKILL
+```
 
 <br/>
 
 ### HEALTHCHECK(컨테이너 헬스 체크)
-`HEALTHCHECK [옵션] CMD 명령`
+```dockerfile
+HEALTHCHECK [옵션] CMD 명령
+
+# or 헬스 체크 None
+HEALTHCHECK NONE
+```
 
 Docker에 대해 컨테이너의 상태를 어떻게 확인할지를 설정  
-HEALTHCHECK NONE으로 헬스 체크를 사용하지 않을 수 있음  
 --interval=n 옵션으로 헬스 체크 간격을,  
 --timeout=n 옵션으로 헬스 체크 타임아웃을,  
 --retries=N 옵션으로 타임아웃 횟수 지정 가능
 
-ex) `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1`  
+ex)
+```dockerfile
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
+```
 5분마다 가동 중인 웹 서버의 메인 페이지를 3초 안에 표시할 수 있는지 없는지 확인한다.  
 `docker container inspect webapp`으로 헬스 체크 결과(Health 부분)를 확인할 수 있다.
 
@@ -306,7 +330,9 @@ ex) `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exi
 ## 환경 및 네트워크 설정
 ### ENV(환경변수 설정)
 #### key value 형
-`ENV <key> <value>`
+```dockerfile
+ENV <key> <value>
+```
 
 단일 환경변수에 하나의 값을 설정
 
@@ -317,7 +343,9 @@ ENV myNickName bigmountain
 ```
 
 #### key=value 형
-`ENV <key>=<value>`
+```dockerfile
+ENV <key>=<value>
+```
 
 한 번에 여러 개의 환경변수를 설정
 
@@ -336,10 +364,14 @@ ENV 명령으로 지정한 환경변수는 docker container run할 때 --env 옵
 <br/>
 
 ### USER(사용자 지정)
-`USER 유저명[:그룹명]`
+```dockerfile
+USER 유저명[:그룹명]
+
+# or
+USER 유저ID[:그룹ID]
+```
 
 RUN, CMD, ENTRYPOINT 같은 명령을 실행하기 위한 사용자를 지정할 때 사용  
-`USER 유저ID[:그룹ID]`처럼 사용 가능
 
 ex)
 ```dockerfile
@@ -350,7 +382,9 @@ USER kts
 <br/>
 
 ### LABEL(라벨 지정)
-`LABEL <key>=<value>`
+```dockerfile
+LABEL <key>=<value>
+```
 
 이미지에 버전 정보나 작성자 정보, 코멘트 등과 같은 정보를 제공할 때 사용
 
@@ -366,7 +400,9 @@ Docker 1.13이전 버전에서는 작성자를 기술할 때 MAINTAINER 명령�
 <br/>
 
 ### WORKDIR(작업 디렉터리 지정)
-`WORKDIR [작업 디렉터리 경로]`
+```dockerfile
+WORKDIR [작업 디렉터리 경로]
+```
 
 RUN, CMD, ENTRYPOINT, COPY, ADD 같은 명령을 실행하기 위한 작업용 디렉터리를 지정할 때 사용
 만일 지정한 디렉터리가 없으면 새로 작성
