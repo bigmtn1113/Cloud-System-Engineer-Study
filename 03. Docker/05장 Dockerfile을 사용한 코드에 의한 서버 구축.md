@@ -205,3 +205,94 @@ ex) `docker container run -d -p 80:80 cmd-sample`
 위의 CMD 예제를 포함한 Dockerfile을 build해서 만든 이미지가 cmd-sample이고,  
 이 이미지로 컨테이너를 background로 실행시킨 것이다.  
 컨테이너가 실행될 때 자동으로 CMD 명령이 실행되면서 nginx가 foreground로 실행된다.
+
+<br/>
+
+### ENTRYPOINT(데몬 실행)
+#### Shell 형식
+`ENTRYPOINT 명령`
+
+RUN 명령 구문과 동일
+
+ex) `ENTRYPOINT nginx -g 'daemon off;'`
+
+#### Exec 형식
+`ENTRYPOINT ["실행 가능한 명령", "매개변수1", "매개변수2", ...]`
+
+RUN 명령 구문과 동일
+
+ex) `ENTRYPOINT ["nginx", "-g", "daemon off;"]`
+
+#### CMD 명령과의 차이
+- CMD - docker container run 명령 실행 시에 인수로 새로운 명령을 지정하면 이것을 우선 실행
+- ENTRYPOINT - ENTRYPOINT 명령으로는 실행하려는 명령을 지정하고 CMD 명령으로는 그 명령의 인수를 지정해 조합 가능
+
+ex)
+```dockerfile
+FROM ubuntu:16.04
+
+ENTRYPOINT ["top"]
+CMD ["-d", "10"]
+```
+```bash
+docker container run -it sample		# top -d 10 실행
+docker container run -it sample -d 2		# top -d 2 실행. CMD 명령 덮어쓰기
+```
+
+<br/>
+
+### ONBUILD(빌드 완료 후에 실행)
+`ONBUILD 명령`
+
+Dockerfile로부터 생성한 이미지를 베이스 이미지로 한 다른 Dockerfile을 빌드할 때, 실행하고 싶은 명령을 기술
+
+ex)
+Dockerfile.base
+```dockerfile
+FROM ubuntu:17.10
+
+# 웹 서버 설치 및 설정
+...
+
+ONBUILD ADD site.tar /var/www/html/
+```
+
+```bash
+docker build -t baseimage -f Dockerfile.base .		# 앱 실행 환경 구축 이미지(Infra)
+```
+
+Dockerfile
+```dockerfile
+FROM baseimage
+...
+```
+
+```bash
+docker build -t webimage .				# 개발한 프로그램을 전개한 이미지(App)
+```
+
+ONBUILD 명령으로 인해 Dockerfile을 빌드할 때 ADD 명령이 수행되므로, site.tar 파일은 Dockerfile과 같은 경로에 있어야 한다.
+
+<br/>
+
+### STOPSIGNAL(시스템 콜 시그널의 설정)
+`STOPSIGNAL 시그널`
+
+시그널 번호(9 등) 또는 시그널명(SIGKILL 등)을 지정 가능
+
+ex) `STOPSIGNAL SIGKILL`
+
+<br/>
+
+### HEALTHCHECK(컨테이너 헬스 체크)
+`HEALTHCHECK [옵션] CMD 명령`
+
+Docker에 대해 컨테이너의 상태를 어떻게 확인할지를 설정  
+HEALTHCHECK NONE으로 헬스 체크를 사용하지 않을 수 있음  
+--interval=n 옵션으로 헬스 체크 간격을,  
+--timeout=n 옵션으로 헬스 체크 타임아웃을,  
+--retries=N 옵션으로 타임아웃 횟수 지정 가능
+
+ex) `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1`  
+5분마다 가동 중인 웹 서버의 메인 페이지를 3초 안에 표시할 수 있는지 없는지 확인한다.  
+`docker container inspect webapp`으로 헬스 체크 결과(Health 부분)를 확인할 수 있다.
