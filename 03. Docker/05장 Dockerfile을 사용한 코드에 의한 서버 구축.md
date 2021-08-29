@@ -300,3 +300,80 @@ HEALTHCHECK NONE으로 헬스 체크를 사용하지 않을 수 있음
 ex) `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1`  
 5분마다 가동 중인 웹 서버의 메인 페이지를 3초 안에 표시할 수 있는지 없는지 확인한다.  
 `docker container inspect webapp`으로 헬스 체크 결과(Health 부분)를 확인할 수 있다.
+
+---
+
+## 환경 및 네트워크 설정
+### ENV(환경변수 설정)
+#### key value 형
+`ENV <key> <value>`
+
+단일 환경변수에 하나의 값을 설정
+
+ex)
+```dockerfile
+ENV myName "Taesan Kim"
+ENV myNickName bigmountain
+```
+
+#### key=value 형
+`ENV <key>=<value>`
+
+한 번에 여러 개의 환경변수를 설정
+
+ex)
+```dockerfile
+ENV myName="Taesan Kim" \
+	myNickName=bigmountain
+```
+하나의 ENV 명령을 사용했으므로 만들어지는 Docker 이미지는 하나이다.
+
+#### ※ 특징
+value 값은 모두 문자열로 취급(공백이나 따옴표와 같은 문자를 포함한 것도 문자로 취급)한다.  
+\$myName 같이 변수 앞에 \를 추가하면 이스케이프 처리를 할 수 있다  
+ENV 명령으로 지정한 환경변수는 docker container run할 때 --env 옵션을 사용하면 변경할 수 있다.
+
+<br/>
+
+### USER(사용자 지정)
+`USER 유저명[:그룹명]`
+
+RUN, CMD, ENTRYPOINT 같은 명령을 실행하기 위한 사용자를 지정할 때 사용  
+`USER 유저ID[:그룹ID]`처럼 사용 가능
+
+ex)
+```dockerfile
+RUN ["adduser" "kts"]
+USER kts
+```
+
+<br/>
+
+### LABEL(라벨 지정)
+`LABEL <key>=<value>`
+
+이미지에 버전 정보나 작성자 정보, 코멘트 등과 같은 정보를 제공할 때 사용
+
+ex)
+```dockerfile
+LABEL maintainer="Taesan Kim" \
+	title="WebAPP" \
+	version="1.0"' \
+	description="This image is WebApplicationServer"
+```
+Docker 1.13이전 버전에서는 작성자를 기술할 때 MAINTAINER 명령을 사용했었지만, 현재 deprecated 되었다.
+
+<br/>
+
+### WORKDIR(작업 디렉터리 지정)
+`WORKDIR [작업 디렉터리 경로]`
+
+RUN, CMD, ENTRYPOINT, COPY, ADD 같은 명령을 실행하기 위한 작업용 디렉터리를 지정할 때 사용
+만일 지정한 디렉터리가 없으면 새로 작성
+
+ex)
+```dockerfile
+WORKDIR /first
+WORKDIR second
+```
+작업 디렉터리는 /firtst/second가 된다.
