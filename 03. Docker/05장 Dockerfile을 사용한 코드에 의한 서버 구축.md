@@ -246,7 +246,7 @@ docker container run -it sample -d 2		# top -d 2 실행. CMD 명령 덮어쓰기
 
 Dockerfile로부터 생성한 이미지를 베이스 이미지로 한 다른 Dockerfile을 빌드할 때, 실행하고 싶은 명령을 기술
 
-ex)
+ex)  
 Dockerfile.base
 ```dockerfile
 FROM ubuntu:17.10
@@ -272,6 +272,10 @@ docker build -t webimage .				# 개발한 프로그램을 전개한 이미지(Ap
 ```
 
 ONBUILD 명령으로 인해 Dockerfile을 빌드할 때 ADD 명령이 수행되므로, site.tar 파일은 Dockerfile과 같은 경로에 있어야 한다.
+
+#### ※ ONBUILD 명령을 사용한 팀 개발
+개발팀 안에 실행 환경 Dockerfile을 작성할 담당자를 정한 후, 그 담당자가 OS/미들웨어의 설치나 설정, 라이브러리 검증이나 도입 등을 하고 베이스가 되는 Dockerfile을 만든다.
+웹 콘텐츠 개발자는 이 베이스가 되는 Dockerfile을 바탕으로 각자 개발한 소스코드를 전개해 테스트를 하면, 팀 멤버 전원이 똑같은 실행 환경에서 개발과 테스트를 진행할 수 있다.
 
 <br/>
 
