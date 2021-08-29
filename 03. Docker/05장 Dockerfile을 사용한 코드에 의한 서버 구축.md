@@ -413,3 +413,132 @@ WORKDIR /first
 WORKDIR second
 ```
 작업 디렉터리는 /firtst/second가 된다.
+
+---
+
+## 파일 설정
+### ADD(파일 및 디렉터리 추가)
+```dockerfile
+ADD [--chown=유저명:그룹명] <호스트의 파일 경로> <Docker 이미지의 파일 경로>
+
+# or
+ADD [--chown=유저명:그룹명] ["<호스트의 파일 경로>" "<Docker 이미지의 파일 경로>"]
+```
+
+호스트상의 파일이나 디렉터리, 원격 파일을 Docker 이미지 안으로 복사할 때 사용  
+--chown 옵션은 Linux OS 기반의 컨테이너 대상으로 사용
+
+ex)
+```dockerfile
+# hos로 시작하는 모든 파일 추가
+ADD hos* /docker_dir/
+
+# 원격 파일 추가
+ADD http://www.wings.msn.to/index.php /docker_dir/web/
+```
+이미지에 추가하고 싶은 파일이 원격 파일이 URL인 경우, 추가한 파일은 퍼미션이 600이 된다.  
+호스트의 파일이 tar 아카이브거나 압축 포맷(gzip, bzip2 등)일 때는 디렉터리로 압축을 푼다.  
+단, 원격 URL로부터 다운로드한 리소스는 압축이 풀리지 않는다.  
+ADD 명령은 인증을 지원하지 않으므로 원격 파일의 다운로드에 인증이 필요한 경우는 RUN 명령에서 wget이나 curl을 사용해야 한다.
+
+<br/>
+
+### EXPOSE(포트 설정)
+```dockerfile
+EXPOSE <포트 번호> [<포트 번호>/<프로토콜>]
+```
+
+Docker에게 실행 중인 컨테이너가 listen하고 있는 네트워크를 알려줌  
+docker container run 명령의 -p 옵션을 사용할 때 어떤 포트를 호스트에 공개할지를 정의
+
+ex)
+```dockerfile
+# 프로토콜 명시하지 않을 경우, default 값은 tcp
+EXPOSE 8080
+
+EXPOSE 8080/udp
+```
+
+<br/>
+
+### ARG(Dockerfile 내 변수 설정)
+```dockerfile
+ARG <이름>[=기본값]
+```
+
+Dockerfile 안에서 사용할 변수 정의  
+ENV와는 달리 이 변수는 Dockerfile 안에서만 사용 가능
+
+ex)
+```dockerfile
+ARG YOURNAME="Taesan"
+RUN echo $YOURNAME
+```
+Dockerfile을 빌드할 때 --build-arg 옵션을 붙여 ARG 명령에서 지정한 YOURNAME에 값을 지정하면 지정한 값이 출력되고,  
+옵션을 붙이지 않으면 default 값인 Taesan이 출력된다.
+
+<br/>
+
+### SHELL(기본 쉘 설정)
+```dockerfile
+SHELL ["쉘의 경로", "파라미터"]
+```
+
+쉘 형식으로 명령을 실행할 때 기본 쉘을 설정  
+default 값은 Linux는 ["/bin/sh", "-c"], Windows는 ["cmd", "/S", "/C"]
+
+ex)
+```dockerfile
+SHELL ["/bin/bash", "-c"]
+```
+SHELL 명령을 지정하면 Dockerfile 안에서 Shell 형식으로 지정한 RUN, CMD, ENTRYPOINT 명령에서도 유효해진다.
+
+<br/>
+
+### COPY(파일 복사)
+```dockerfile
+COPY [--chown=유저명:그룹명] <호스트의 파일 경로> <Docker 이미지의 파일 경로>
+
+# or
+COPY [--chown=유저명:그룹명] ["<호스트의 파일 경로>" "<Docker 이미지의 파일 경로>"]
+```
+
+ADD 명령과 매우 유사하나, COPY 명령은 호스트상의 파일을 이미지 안으로 복사하는 처리만 가능
+단순히 이미지 안에 파일을 배치하기만 하고 싶을 때 사용
+
+<br/>
+
+### VOLUME(볼륨 마운트)
+```dockerfile
+VOLUME ["/마운트 포인트"]
+```
+
+지정한 이름의 마운트 포인트를 작성하고, 호스트나 그 외 다른 컨테이너로부터 볼륨의 외부 마운트를 수행  
+JSON 배열 또는 여러 개의 인수로 된 문자열을 지정 가능  
+
+ex)
+```dockerfile
+# JSON 배열
+VOLUME ["/var/log/"]
+
+# 여러 개의 인수로 된 문자열
+VOLUME /var/log /var/db
+
+# 예제
+FROM ubuntu
+
+RUN mkdir /myvol
+RUN echo "hello world" > /myvol/greeting
+
+VOLUME /myvol
+```
+
+<br/>
+
+### ※ Dockerfile 저장 위치와 .dockerignore 파일
+Docker에서 빌드를 하면 빌드를 실행한 디렉터리 아래에 있는 모든 파일이 Docker 데몬으로 전송된다.  
+그래서 Dockerfile의 저장 위치는 빈 디렉터리가 좋다.  
+Docker의 빌드에 필요 없는 파일은 Dockerfile과 똑같은 디렉터리에 두지 않도록 한다.
+
+빌드에서 제외하고 싶은 파일이 있는 경우에는 '.dockerignore'이라는 이름의 파일 안에 해당 파일명을 기술한다.  
+.dockerignore 파일을 설정해 두면 빌드에 불필요한 파일이 전송되지 않으므로 처리 속도가 빨라진다.
