@@ -4,16 +4,24 @@
 ### On-premise vs Cloud Service
 #### On-premise
 - 많은 초기 구매 비용
+
 - 인력, 패치 및 업그레이드 주기
+
 - 고정 용량
+
 - 조달 및 설치
+
 - 한정된 지리적 지역
 
 #### Cloud Service
 - 초기 투자금 없음
+
 - 낮은 유지 비용
+
 - 유연한 용량, 용량 추정 불필요
+
 - 속도 및 민첩성
+
 - On-Demand 글로벌 지원
 
 <br/>
