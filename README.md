@@ -37,3 +37,4 @@
   - [01. Cloud Computing](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/01%EC%9E%A5%20Cloud%20Computing.md)
   - [02. AWS Global Infrastructure](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/02%EC%9E%A5%20AWS%20Global%20Infrastructure.md)
   - [03. AWS EC2](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/03%EC%9E%A5%20AWS%20EC2.md)
+  - [06. AWS IAM](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/06%EC%9E%A5%20AWS%20IAM.md)
