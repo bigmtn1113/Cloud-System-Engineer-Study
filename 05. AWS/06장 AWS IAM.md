@@ -38,9 +38,39 @@ User, Group, Role, Policy를 생성 가능
 - Policy
   - 하나 또는 다수의 Permissions를 정의한 문서로 JSON 파일로 구성
 
-  - Identity-based policies(자격증명 기반 정책): User, Group, Role에 할당하는 IAM 정책
+  - **Identity-based policies(자격증명 기반 정책):** User, Group, Role에 할당하는 IAM 정책
 
-  - Resource-based policies(리소스 기반 정책): S3 Bucket, EC2 등 AWS 서비스 자원에 할당하는 정책
+  - **Resource-based policies(리소스 기반 정책):** S3 Bucket, EC2 등 AWS 서비스 자원에 할당하는 정책
 
 - Permission
   - 어떤 리소스와 어떤 작업을 Allow/Deny할지를 결정
+
+### Policy
+#### AWS Managed Policies
+AWS에서 만들어서 제공해주는 Policy
+
+AdministratorAccess 정책을 할당 받은 사용자는 모든 작업 수행 가능
+
+#### Customer Managed Policies
+사용자 생성 Policy
+
+정책에서 Create Policy를 통해 직접 정책 생성  
+고객 관리 정책은 정책을 생성한 계정에서만 유효  
+정책 JSON 파일은 AWS에서 제공하는 Visual Editor를 사용하면 쉽게 생성 가능
+
+#### JSON 파일
+- **Version:** "2012-10-17" 또는 "2008-10-17" 선택
+
+- **ID:** 선택 사항. Policy의 구분자로 UUID를 사용 권장
+
+- **SID:** 선택 사항. Statement ID로 statement를 구분하기 위해 사용
+
+- **Effect:** Allow, Deny 사용
+
+- **Principal, NotPrincipal:** 대상(Users, Services, Roles) 지정
+
+- **Action, NotAction:** 서비스의 API Calls 지정
+
+- **Resource, NotResource:** Action이 영향을 미치는 리소스 리스트 지정
+
+- **Condition:** 조건 지정. 조건을 충족하는 경우에만 해당 정책 적용
