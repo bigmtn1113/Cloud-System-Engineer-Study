@@ -22,6 +22,40 @@
 
 - 템플릿을 코드로 취급하고 원하는 버전 제어 방법(Git, SVN, ...)으로 이를 관리
 
+#### Template 구조
+- AWSTemplateFormatVersion
+  - 현재 유일한 유효 값은 2010-09-09
+
+- Description(OPTIONAL)
+  - 템플릿을 설명하는 섹션
+
+- Metadata(OPTIONAL)
+  - 템플릿에 대한 세부 정보 기술
+
+- Parameters(OPTIONAL)
+  - 스택을 생성할 때 필요한 파라미터 기술
+
+  - Resources와 Outputs에서 사용
+
+- Mappings(OPTIONAL)
+  - key-value 형식의 map 선언
+
+  - 키는 문자열, 값은 문자열이나 list
+
+  - Fn::FindInMap 내장 함수를 사용하여 맵에서 값 호출
+
+- Conditions(OPTIONAL)
+  - 스택이 프로덕션용인지 테스트 환경용인지에 따라 달라지는 리소스를 조건부로 생성
+
+- Transform(OPTIONAL)
+  - 서버리스 애플리케이션의 경우 사용할 AWS SAM(Serverless Application Model) 버전
+
+- Resources
+  - AWS 리소스 및 속성 설정
+
+- Outputs(OPTIONAL)
+  - 템플릿 하나에 여러가지 리소스 구성 가능
+
 #### Stack
 CloudFormation가 리소스를 관리하는 하나의 단위
 
