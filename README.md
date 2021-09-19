@@ -43,3 +43,4 @@
   - [09. AWS RDS](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/09%EC%9E%A5%20AWS%20RDS.md)
   - [10. AWS DynamoDB](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/10%EC%9E%A5%20AWS%20DynamoDB.md)
   - [11. AWS CloudFormation](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/11%EC%9E%A5%20AWS%20CloudFormation.md)
+  - [12. AWS VPC](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/12%EC%9E%A5%20AWS%20VPC.md)
