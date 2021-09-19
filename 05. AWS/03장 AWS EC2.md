@@ -113,3 +113,31 @@ Auto Scaling을 사용하면 확장 조정 계획을 통해 리소스에 대한 
 
 ※ **Amazon ECS(Elastic Container Service)**  
 컨테이너화된 애플리케이션의 손쉬운 배포, 관리 및 조정에 도움이 되는 완전관리형 컨테이너 오케스트레이션 서비스
+
+<br/>
+
+### Load Balancing
+네트워크 트래픽을 하나 이상의 서버 혹은 장비로 분산하기 위해 사용하는 기술
+
+#### Algorithm
+- Roud Robin
+  - Session 연결을 순차적으로 맺어줌
+
+- Hash
+  - Client가 특정 Server로 연결된 이후 동일 서버로만 연결
+
+- Least Connection
+  - Session 수를 고려하여 가장 작은 Session을 보유한 서버로 연결
+
+- Response Time
+  - 서버간의 Resource와 Connectino의 차이가 있는 환경에서 사용되는, 응답시간이 가장 빠른 서버로 Session을 연결
+
+#### Network Load Balancer(NLB)
+- 온프레이스 환경에서의 L4 스위치 역할
+
+- TCP와 UDP 그리고 RTP 등의 헤더를 사용하여 FTP, HTTP, TFTP, SMTP 등의 프로토콜 중 어떤 것을 우선시해서 스위칭할 지 판단 가능
+
+#### Application Load Balancer(ALB)
+- 온프레미스 환경에서의 L7 스위치 역할
+
+- 이메일의 문자열로 내용을 파악한다거나 HTTP의 URL, FTP의 파일명, 쿠키 정보 등을 분석해서 정교한 LB 가능
