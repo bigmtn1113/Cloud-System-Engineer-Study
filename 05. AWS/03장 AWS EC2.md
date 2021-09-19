@@ -82,6 +82,31 @@ HDD - st1(Throughput Optimized), sc1(Cold)
 
 - EC2 인스턴스 종료 시 모든 Attached EBS 볼륨들은 지속
 
+#### EBS 성능
+새로 만들어진 EBS 볼륨은 사용 가능한 순간에 최대 성능을 내고, initialization이 불필요(pre-warming)
+
+- RAID 0
+  - 입출력 성능이 안정성보다 더 중요할 때 사용. 단일 Amazon EBS 볼륨에서 프로비저닝할 때보다 파일 시스템의 성능이 더 향상
+
+  - 장점
+    - 입출력이 stripe 내의 볼륨들에 분산
+
+    - 볼륨을 하나 추가하면 그 즉시 처리량의 추가와 같다
+
+  - 단점
+    - 가장 performance가 낮은 볼륨을 기준으로 stripe의 performance 제한
+
+    - 한 볼륨의 손실은 데이터 손실을 의미
+
+- RAID 1
+  - 안정성이 입출력 성능보다 중요할 때 사용
+
+  - 장점
+    - 데이터 지속성 측면에서 안전
+
+  - 단점
+    - EBS와 함께 사용하지 않는 것을 권장. 데이터를 동시에 여러 볼륨에 쓰기 때문에 비 RAID 구성에 비해 EC2와 EBS 사이에 더 큰 대역폭이 필요하며, RAID 1은 쓰기 성능 향상 효과를 제공하지 않음
+
 <br/>
 
 ### Network & Security
