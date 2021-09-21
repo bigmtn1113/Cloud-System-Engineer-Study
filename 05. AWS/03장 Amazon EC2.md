@@ -1,4 +1,4 @@
-## AWS EC2(Elastic Compute Cloud)
+## Amazon EC2(Elastic Compute Cloud)
 - 확장 가능 컴퓨팅 용량 제공
 
 - 하드웨어에 선 투자할 필요가 없어 더 빠르게 앱 개발 및 배포 가능
