@@ -1,5 +1,5 @@
-## Route 53
-Amazon Route 53는 높은 가용성과 확장성이 뛰어난 클라우드 Domain Name System(DNS) 웹 서비스
+## Amazon Route 53
+**Amazon Route 53는 높은 가용성과 확장성이 뛰어난 클라우드 Domain Name System(DNS) 웹 서비스**
 
 - 사용자를 인터넷 애플리케이션으로 라우팅할 수 있는 매우 안정적이고 비용 효율적인 방법을 개발자와 기업에 제공하기 위해 설계
 
@@ -8,6 +8,8 @@ Amazon Route 53는 높은 가용성과 확장성이 뛰어난 클라우드 Domai
 - 사용자를 AWS 외부의 인프라로 라우팅할때도 사용
 
 - 트래픽을 정상적인 엔드포인트로 라우팅하거나 애플리케이션 및 해당 엔드포인트의 상태를 개별적으로 모니터링하도록 DNS 상태 확인 구성 가능
+
+<br/>
 
 ### Routing Policy
 #### Simple routing policy(단순 라우팅 정책)
