@@ -1,5 +1,5 @@
-## IAM(Identity and Access Management)
-AWS 리소스에 대한 액세스를 중앙에서 안전하게 제어할 수 있는 웹 서비스
+## AWS IAM(Identity and Access Management)
+**AWS 리소스에 대한 액세스를 중앙에서 안전하게 제어할 수 있는 웹 서비스**
 
 리소스를 사용하도록 인증 및 권한이 부여된 대상을 제어하는 접근제어 기능(ACL, Access Control List)  
 만들어진 Entity에 정책을 적용하여 AWS 리소스에 대한 접근 제어  
@@ -45,18 +45,22 @@ User, Group, Role, Policy를 생성 가능
 - Permission
   - 어떤 리소스와 어떤 작업을 Allow/Deny할지를 결정
 
+<br/>
+
 ### Policy
 #### AWS Managed Policies
 AWS에서 만들어서 제공해주는 Policy
 
-AdministratorAccess 정책을 할당 받은 사용자는 모든 작업 수행 가능
+- AdministratorAccess 정책을 할당 받은 사용자는 모든 작업 수행 가능
 
 #### Customer Managed Policies
 사용자 생성 Policy
 
-정책에서 Create Policy를 통해 직접 정책 생성  
-고객 관리 정책은 정책을 생성한 계정에서만 유효  
-정책 JSON 파일은 AWS에서 제공하는 Visual Editor를 사용하면 쉽게 생성 가능
+- 정책에서 Create Policy를 통해 직접 정책 생성
+
+- 고객 관리 정책은 정책을 생성한 계정에서만 유효
+
+- 정책 JSON 파일은 AWS에서 제공하는 Visual Editor를 사용하면 쉽게 생성 가능
 
 #### JSON 파일
 - **Version:** "2012-10-17" 또는 "2008-10-17" 선택
