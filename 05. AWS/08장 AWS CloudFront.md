@@ -1,18 +1,20 @@
-## CloudFront
-CDN(Content Delivery Network) 서비스
+## Amazon CloudFront
+**CDN(Content Delivery Network) 서비스**
 
 캐싱을 통해 사용자에게 좀 더 빠른 전송 속도를 제공함을 목적으로 함  
 전 세계 이곳저곳에 Edge Location을 두고 Client에 가장 가까운 Edge Location을 찾아 Latency를 최소화시켜 빠른 데이터 액세스 제공
 
+<br/>
+
 ### Origin Server
-원본 데이터를 갖고 있는 서버
+**원본 데이터를 갖고 있는 서버**
 
 보통 AWS에서의 Origin Server는 S3, EC2 인스턴스
 
 <br/>
 
 ### Edge Location
-AWS에서 실질적으로 제공하는 전 세계에 퍼져 있는 서버
+**AWS에서 실질적으로 제공하는 전 세계에 퍼져 있는 서버**
 
 같은 요청에 대해서 빠르게 응답해주기 위해 Cache 기능 제공
 
