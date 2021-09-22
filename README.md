@@ -39,6 +39,7 @@
   - [03. Amazon EC2](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/03%EC%9E%A5%20Amazon%20EC2.md)
   - [04. Amazon EFS](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/04%EC%9E%A5%20Amazon%20EFS.md)
   - [05. Amazon FSx](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/05%EC%9E%A5%20Amazon%20FSx.md)
+  - [06. Amazon S3](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/06%EC%9E%A5%20Amazon%20S3.md)
   - [07. AWS IAM](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/07%EC%9E%A5%20AWS%20IAM.md)
   - [08. Amazon CloudFront](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/08%EC%9E%A5%20Amazon%20CloudFront.md)
   - [09. Amazon Route 53](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/09%EC%9E%A5%20Amazon%20Route%2053.md)
