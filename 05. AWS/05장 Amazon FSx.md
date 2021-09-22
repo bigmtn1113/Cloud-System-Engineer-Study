@@ -10,12 +10,18 @@ Windows 기반 스토리지 및 HPC, 머신러닝 등의 용도를 위한 3rd Pa
 
 - Active Directory 및 Windows ACL 연동
 
+- 단일 AZ 및 다중 AZ 배포 옵션, 완전관리형 백업 및 유휴 및 전송 중 데이터 암호를 제공
+
+- 언제든지 파일 시스템의 스토리지 크기를 조정하고 처리 성능을 변경 가능
+
 - 고성능 SSD storage 기반 구성
 
 <br/>
 
 ### Amazon FSx for Lustre
 - Compute-intensive한 워크로드를 위한 완전관리형 Lustre 파일 시스템
+
+- 기계 학습, 고성능 컴퓨팅(HPC), 동영상 렌더링, 금융 시뮬레이션 같은 많은 워크로드는 고성능 공유 스토리지를 통해 동일한 데이터 집합에 액세스하는 컴퓨팅 인스턴스를 활용
 
 - 100+ GB/s 처리량
 
