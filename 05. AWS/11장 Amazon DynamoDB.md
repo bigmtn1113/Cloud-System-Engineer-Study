@@ -94,7 +94,7 @@
 
 <br/>
 
-### Amazno DynamoDB stream
+### Amazon DynamoDB stream
 - 테이블의 실시간 데이터 수정 이벤트를 캡처하는 기능
 
 - 이벤트 발생시마다 스트림 레코드 기록
