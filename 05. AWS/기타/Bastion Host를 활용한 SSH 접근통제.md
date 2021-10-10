@@ -7,26 +7,26 @@
 <br/>
 
 ### 과정
-1\) Bastion Host에 적용시킬 Security Group 생성  
+#### 1\) Bastion Host에 적용시킬 Security Group 생성
 - 인바운드 규칙 - SSH / 22 / 접근허용 IP
 
-2\) Bastion Host EC2 생성  
+#### 2\) Bastion Host EC2 생성
 - 1)번 과정에서 만든 Security Group 적용
 - Key 생성 및 적용
 
-3\) Web Instance에 적용시킬 Security Group 생성  
+#### 3\) Web Instance에 적용시킬 Security Group 생성
 - 인바운드 규칙 - SSH / 22 / 1)번 과정에서 만든 Security Group
 
-4\) Web Instance EC2 생성  
+#### 4\) Web Instance EC2 생성
 - 3)번 과정에서 만든 Security Group 적용
 - Key 생성 및 적용
 
-5\) Putty Pageant 설치 및 사용  
+#### 5\) Putty Pageant 설치 및 사용
 - https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html 에서 다운로드
 - Pageant 프로그램 실행 후, Web Instance 접속 키 등록
 - Putty 설정(Connection - SSH - Auth - Authentification parameters - Allow agent forwarding) 셋팅
 
-6\) 접속 확인  
+#### 6\) 접속 확인
 - Bastion Host에서 Web Instance로 SSH 접근되는지 확인
 
 <br/>
