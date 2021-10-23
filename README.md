@@ -49,3 +49,4 @@
   - [13. Amazon VPC](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/13%EC%9E%A5%20Amazon%20VPC.md)
   - [기타](https://github.com/kva231/Cloud-System-Engineer-Study/tree/master/05.%20AWS/%EA%B8%B0%ED%83%80)
     - [Bastion Host를 활용한 SSH 접근통제](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/%EA%B8%B0%ED%83%80/Bastion%20Host%EB%A5%BC%20%ED%99%9C%EC%9A%A9%ED%95%9C%20SSH%20%EC%A0%91%EA%B7%BC%ED%86%B5%EC%A0%9C.md)
+    - [AWS CloudWatch Alarms를 이용한 Slack 알림 생성](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/%EA%B8%B0%ED%83%80/AWS%20CloudWatch%20Alarms%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20Slack%20%EC%95%8C%EB%A6%BC%20%EC%83%9D%EC%84%B1.md)
