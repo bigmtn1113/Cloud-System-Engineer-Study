@@ -16,13 +16,13 @@ apt-get install stress -y
 ### Stress 사용
 #### CPU 부하
 ```bash
-stress --cpu 2
+stress --cpu 2                        # stress --cpu <코어 수>
 ```
 #### Memory 부하
 ```bash
-stress --vm 2 --vm-bytes 2048m
+stress --vm 2 --vm-bytes 2048m        # stress --vm <프로세스 수> --vm-bytes <사용할 크기>
 ```
 #### HDD 부하
 ```bash
-stress --hdd 2 --hdd-bytes 1024m
+stress --hdd 2 --hdd-bytes 1024m      # stress --hdd <hdd 수> --hdd-bytes <사용할 크기>
 ```
