@@ -26,3 +26,7 @@ stress --vm 2 --vm-bytes 2048m        # stress --vm <프로세스 수> --vm-byte
 ```bash
 stress --hdd 2 --hdd-bytes 1024m      # stress --hdd <hdd 수> --hdd-bytes <사용할 크기>
 ```
+#### Timeout
+```bash
+stress --cpu 2 --timeout 300s
+```
