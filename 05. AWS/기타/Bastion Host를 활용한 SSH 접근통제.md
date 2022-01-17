@@ -22,9 +22,9 @@
 - Key 생성 및 적용
 
 #### 5\) Putty Pageant 설치 및 사용
-- https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html 에서 다운로드
+- https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html 에서 pageant.exe 다운로드
 - Pageant 프로그램 실행 후, Web Instance 접속 키 등록
-- Putty 설정(Connection - SSH - Auth - Authentification parameters - Allow agent forwarding) 셋팅
+- Bastion Host EC2 Putty 설정(Connection - SSH - Auth - Authentification parameters - Allow agent forwarding 체크) 셋팅
 
 #### 6\) 접속 확인
 - Bastion Host에서 Web Instance로 SSH 접근되는지 확인
