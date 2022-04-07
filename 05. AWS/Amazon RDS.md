@@ -158,5 +158,5 @@ MySQL 및 PostgreSQL과 호환되는 완전 관리형 관계형 데이터베이�
 
 ### ※ 참고
 - **Aurora Replicas vs Clone**  
- Replicas(읽기) 추가 - DB 클러스터에 Reader DB 인스턴스 생성  
- Clone(복제본) 추가 - 기존 데이터베이스의 모든 데이터와 Writer DB 인스턴스가 포함된 새 DB 클러스터 생성
+  - Replicas(읽기) 추가 - DB 클러스터에 Reader DB 인스턴스 생성  
+  - Clone(복제본) 생성 - 기존 데이터베이스의 모든 데이터와 Writer DB 인스턴스가 포함된 새 DB 클러스터 생성
