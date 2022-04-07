@@ -41,6 +41,8 @@ git push codecommit master          # Username과 Password는 사전 작업에�
 <br/>
 
 ### ※ 참고
+- git config는 HTTPS 방식으로 설정
+
 - **git clone**
   ```bash
   git clone <리포지터리 HTTPS URL>
