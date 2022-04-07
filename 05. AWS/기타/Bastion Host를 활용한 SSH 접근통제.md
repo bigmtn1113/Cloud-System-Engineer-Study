@@ -8,7 +8,7 @@
 
 ### 과정
 #### 1\) Bastion Host에 적용시킬 Security Group 생성
-- 인바운드 규칙 - SSH / 22 / 접근허용 IP
+- 인바운드 규칙 - SSH / 22 / 접근 허용 IP
 
 #### 2\) Bastion Host EC2 생성
 - 1)번 과정에서 만든 Security Group 적용
@@ -31,11 +31,15 @@
 
 <br/>
 
-#### ※ Bastion Host와 Web Instance에 각각 다른 Key를 적용하는 이유
-- 같은 Key로 EC2를 만들면 Bastion Host가 외부 위험에 노출될 시, Web Instance도 같이 노출
+### ※ 참고
+- **Bastion Host 보안 그룹 접근 허용 IP**  
+  접근 허용 IP는 공인 IP여야 하고 공인 IP는 인터넷 검색을 통해 확인 가능
 
-#### ※ Putty Pageant
-- Bastion Host와 Web Instance가 같은 VPC 안에 있으면 내부 IP로 통신 가능
-- Web Instance는 Bastion Host을 통해서만 SSH 접근 가능
-- 그러나 Bastion Host가 Web Instance의 접속 Key를 갖고 있지 않아 SSH 접속 불가능
-- Pageant로 Web Instance 접속 Key를 등록하면 Web Instance로 SSH 접속 가능
+- **Bastion Host와 Web Instance에 각각 다른 Key를 적용하는 이유**  
+  같은 Key로 EC2를 만들면 Bastion Host가 외부 위험에 노출될 시, Web Instance도 같이 노출
+
+- **Putty Pageant**  
+  Bastion Host와 Web Instance가 같은 VPC 안에 있으면 내부 IP로 통신 가능  
+  Web Instance는 Bastion Host을 통해서만 SSH 접근 가능  
+  그러나 Bastion Host가 Web Instance의 접속 Key를 갖고 있지 않아 SSH 접속 불가능  
+  Pageant로 Web Instance 접속 Key를 등록하면 Web Instance로 SSH 접속 가능
