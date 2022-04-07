@@ -153,3 +153,10 @@ MySQL 및 PostgreSQL과 호환되는 완전 관리형 관계형 데이터베이�
 - **Management:** 전자는 관리자가 RDS MySQL의 버전을 올리면서 사용하지만 후자는 AWS가 개발해서 버전 업그레이드를 주기적으로 하기 때문에 optional 또는 mandatory가 AWS에 의해 결정
 
 - **Read Replica 구성:** 전자는 standby와 read replica를 만들 때 binlog를 사용하지만 후자는 내부 Storage 및 redo log 전송을 통해 빠른 동기화가 가능하면 bandwidth 감소가 가능
+
+<br/>
+
+### ※ 참고
+- **Aurora Replicas vs Clone**  
+ Replicas(읽기) 추가 - DB 클러스터에 Reader DB 인스턴스 생성
+ Clone(복제본) 추가 - 기존 데이터베이스의 모든 데이터와 Writer DB 인스턴스가 포함된 새 DB 클러스터 생성
