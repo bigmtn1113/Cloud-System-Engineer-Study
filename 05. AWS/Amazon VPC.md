@@ -180,12 +180,24 @@
     240.0.0.0 | 255.255.255.255
   
   VPC에서 공인 IP 대역을 사용할 수 있으나 퍼블릭 인터넷 주소와 충돌날 수 있으므로 RFC1918 규약에 따른 사설 IP 대역 사용을 권장
-  
-- **Security Group과 NACL 비교**  
-  Security Group | NACL
+
+<br/>
+
+- **Security Group vs NACL**  
+  **Security Group** | **NACL**
   :---: | :---:
   인스턴스 레벨 운영 | 서브넷 레벨 운영
   허용 규칙 지원 | 허용 및 거부 규칙 지원
   상태 저장<br/>규칙에 관계없이 반환 트래픽 자동 허용 | 상태 비저장<br/>반환 트래픽이 규칙에 의해 명시적으로 허용되어야 함
   트래픽 허용 여부를 결정하기 전에 모든 규칙 평가 | 트래픽 허용 여부를 결정할 때 번호가 가장 낮은 규칙부터 순서대로 규칙 처리
   인스턴스 시작 시 누군가 보안 그룹을 지정하거나, 나중에 보안 그룹을 인스턴스와 연결하는 경우에만 인스턴스에 적용 | 연결된 서브넷의 모든 인스턴스에 자동 적용
+
+<br/>
+
+- **Interface Endpoint vs Gateway Endpoint**  
+  **Interface Endpoint** | **Gateway Endpoint**
+  :---: | :---:
+  ENI을 기반으로 하여, Private IP를 만들어 서비스에 연결 | 라우팅 테이블 경로로 등록해서 서비스에 연결
+  Private Subnet 내부에 위치 | VPC 내부에 위치
+  다양한 서비스(SQS, SNS, Kinesis 등) 지원 | S3, DynamoDB만 지원
+  NAT GW보다 더 많은 비용 발생 | 사용은 무료이며, 트래픽 비용이 발생하긴 하나 NAT GW보다 저렴
