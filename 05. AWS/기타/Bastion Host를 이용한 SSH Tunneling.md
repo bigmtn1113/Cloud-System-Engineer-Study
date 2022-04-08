@@ -39,7 +39,7 @@
     - Server Host - \<Aurora Endpoint\>  
   - Authentication  
     - Username - \<Aurora 마스터 사용자 이름\>  
-    - Password - \<Aurora 마스터 사용자 비밀번호 입력\>
+    - Password - \<Aurora 마스터 사용자 비밀번호\>
 
 <br/>
 
