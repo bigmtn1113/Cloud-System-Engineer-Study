@@ -207,11 +207,11 @@ ex) `docker container run -it -h www.test.com --add-host www.test2.com:192.168.1
 ex) `docker container run --cpu-shares=512 --memory=1g centos`  
 --cpu-shares, -c 옵션으로 컨테이너의 CPU 사용 비율(default=1024)을 지정할 수 있고  
 --memory, -m 옵션으로 컨테이너가 사용할 메모리를 제한할 수 있다.  
-자세한 사항은 [컨테이너 시스템 자원 제한 및 부하 모니터링](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EC%8B%A4%EC%8A%B5/%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%9E%90%EC%9B%90%20%EC%A0%9C%ED%95%9C%20%EB%B0%8F%20%EB%B6%80%ED%95%98%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81.md)를 확인
+자세한 사항은 [컨테이너 시스템 자원 제한 및 부하 모니터링](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%9E%90%EC%9B%90%20%EC%A0%9C%ED%95%9C%20%EB%B0%8F%20%EB%B6%80%ED%95%98%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81.md)를 확인
 
 ex) `docker container run -v /Users/asa/wbapp:/usr/share/nginx/html nginx`  
 --volume, -v 옵션으로 호스트와 컨테이너의 디렉터리를 공유할 수 있다.  
-자세한 사항은 [Bind mount을 이용해 컨테이너의 DB데이터 보존하기](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EC%8B%A4%EC%8A%B5/Bind%20mount%EC%9D%84%20%EC%9D%B4%EC%9A%A9%ED%95%B4%20%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98%20DB%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B3%B4%EC%A1%B4%ED%95%98%EA%B8%B0.md)를 확인
+자세한 사항은 [Bind mount을 이용해 컨테이너의 DB데이터 보존하기](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Bind%20mount%EC%9D%84%20%EC%9D%B4%EC%9A%A9%ED%95%B4%20%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98%20DB%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B3%B4%EC%A1%B4%ED%95%98%EA%B8%B0.md)를 확인
 
 ex) `docker container run -it -e MYSQL_ROOT_PASSWORD=pass123 -w /u01 centos bash`  
 --env, -e 옵션으로 환경변수를 설정할 수 있고  
