@@ -296,6 +296,9 @@ ex) `docker container stop -t 2 5370f74ed4cf`
 --time, -t 옵션은 컨테이너의 정지 시간을 지정(default는 10초)한다는 뜻이다.  
 `docker container kill [옵션] <컨테이너 식별자> [컨테이너 식별자]`를 통해 강제적으로 정지시킬 수 있다.
 
+#### ※ docker container stop $(docker container ps -q)
+가동 중인 모든 컨테이너를 정지시킬 수 있다.
+
 <br/>
 
 ### docker container restart
