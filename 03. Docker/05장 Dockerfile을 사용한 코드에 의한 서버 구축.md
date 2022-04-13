@@ -392,7 +392,7 @@ ex)
 ```dockerfile
 LABEL maintainer="Taesan Kim" \
 	title="WebAPP" \
-	version="1.0"' \
+	version="1.0" \
 	description="This image is WebApplicationServer"
 ```
 Docker 1.13이전 버전에서는 작성자를 기술할 때 MAINTAINER 명령을 사용했었지만, 현재 deprecated 되었다.
