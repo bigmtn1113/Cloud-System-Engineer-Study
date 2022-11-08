@@ -37,6 +37,8 @@
     - [Docker Compose를 이용한 Wordpress와 Mysql 연동](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Docker%20Compose%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20Wordpress%EC%99%80%20Mysql%20%EC%97%B0%EB%8F%99.md)
     - [Nginx ALB with Docker Compose(IaC)](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Nginx%20ALB%20with%20Docker%20Compose(IaC).md)
     - [Docker Swarm Mode, HAProxy, Nginx를 활용한 Web Service의 Load Balancing](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Docker%20Swarm%20Mode%2C%20HAProxy%2C%20Nginx%EB%A5%BC%20%ED%99%9C%EC%9A%A9%ED%95%9C%20Web%20Service%EC%9D%98%20Load%20Balancing.md)
+    - [Docker Data Directory 변경](https://github.com/bigmtn1113/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Docker%20Data%20Directory%20%EB%B3%80%EA%B2%BD.md)
+    - [Docker 용량 정리](https://github.com/bigmtn1113/Cloud-System-Engineer-Study/blob/master/03.%20Docker/%EA%B8%B0%ED%83%80/Docker%20%EC%9A%A9%EB%9F%89%20%EC%A0%95%EB%A6%AC.md)
 - [05. AWS](https://github.com/kva231/Cloud-System-Engineer-Study/tree/master/05.%20AWS)
   - [Cloud Computing](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/Cloud%20Computing.md)
   - [AWS Global Infrastructure](https://github.com/kva231/Cloud-System-Engineer-Study/blob/master/05.%20AWS/AWS%20Global%20Infrastructure.md)
